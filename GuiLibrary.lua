@@ -100,7 +100,7 @@ local VERSION = "5.0"
 	local tweenService = game:GetService("TweenService")
 	local guiService = game:GetService("GuiService")
 	local textService = game:GetService("TextService")
-	local translations = shared.VapeTranslation or {}
+	local translations = {}
 	local translatedlogo = false
 
 	GuiLibrary.ColorStepped = runService.RenderStepped:Connect(function()
@@ -383,7 +383,7 @@ local VERSION = "5.0"
 	hoverboxshadow.ScaleType = Enum.ScaleType.Slice
 	hoverboxshadow.SliceCenter = Rect.new(10, 10, 118, 118)
 	hoverboxshadow.Parent = hoverbox
-	local vertextsize = textService:GetTextSize("v"..VERSION, 19, Enum.Font.SourceSans, Vector2.new(99999, 99999))
+	local vertextsize = textService:GetTextSize("V"..VERSION, 19, Enum.Font.SourceSans, Vector2.new(99999, 99999))
 	local vertext = Instance.new("TextLabel")
 	vertext.Name = "Version"
 	vertext.Size = UDim2.new(0, vertextsize.X, 0, 20)
