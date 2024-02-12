@@ -1,5 +1,5 @@
 local VERSION = "5.0"
-	local baseDirectory = (shared.VapePrivate and "vapeprivate/" or "vape/")
+	local baseDirectory = ("vapeprivate/" or "vape/")
 	local vapeAssetTable = {
 		["vape/assets/AddItem.png"] = "rbxassetid://13350763121",
 		["vape/assets/AddRemoveIcon1.png"] = "rbxassetid://13350764147",
