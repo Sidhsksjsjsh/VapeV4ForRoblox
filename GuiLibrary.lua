@@ -1,3 +1,7 @@
+if getgenv and not getgenv().shared then
+	getgenv().shared = {}
+end
+
 local VERSION = "5.0"
 	local baseDirectory = ("vapeprivate/" or "vape/")
 	local vapeAssetTable = {
