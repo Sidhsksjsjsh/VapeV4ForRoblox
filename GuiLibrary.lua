@@ -1,5 +1,4 @@
-if shared.VapeExecuted then
-	local VERSION = "4.10"..(shared.VapePrivate and " PRIVATE" or "").." "..readfile("vape/commithash.txt"):sub(1, 6)
+local VERSION = "5.0"
 	local baseDirectory = (shared.VapePrivate and "vapeprivate/" or "vape/")
 	local vapeAssetTable = {
 		["vape/assets/AddItem.png"] = "rbxassetid://13350763121",
@@ -393,7 +392,7 @@ if shared.VapeExecuted then
 	vertext.Active = false
 	vertext.TextSize = 19
 	vertext.BackgroundTransparency = 1
-	vertext.Text = "v"..VERSION
+	vertext.Text = "V"..VERSION
 	vertext.TextXAlignment = Enum.TextXAlignment.Left
 	vertext.TextYAlignment = Enum.TextYAlignment.Top
 	vertext.Position = UDim2.new(1, -(vertextsize.X) - 20, 1, -19)
@@ -7064,4 +7063,3 @@ if shared.VapeExecuted then
 	end)
 
 	return GuiLibrary
-end
