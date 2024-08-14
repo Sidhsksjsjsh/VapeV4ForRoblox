@@ -75,7 +75,7 @@ local VERSION = "5.0"
 	}
 	local getcustomasset = getsynasset or getcustomasset or function(location) return vapeAssetTable[location] or "" end
 	local customassetcheck = (getsynasset or getcustomasset) and true
-	local requestfunc = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or request or function() end 
+	local requestfunc = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or request or function() end
 	local isfile = isfile or function(file)
 		local suc, res = pcall(function() return readfile(file) end)
 		return suc and res ~= nil
@@ -108,8 +108,8 @@ local VERSION = "5.0"
 	local translatedlogo = false
 
 	GuiLibrary.ColorStepped = runService.RenderStepped:Connect(function()
-		local col = (tick() * 0.25 * GuiLibrary.RainbowSpeed) % 1 
-		for i, v in pairs(GuiLibrary.RainbowSliders) do 
+		local col = (tick() * 0.25 * GuiLibrary.RainbowSpeed) % 1
+		for i, v in pairs(GuiLibrary.RainbowSliders) do
 			v.SetValue(col)
 		end
 	end)
@@ -155,7 +155,7 @@ local VERSION = "5.0"
 		end
 		return readfile("vape/"..scripturl)
 	end
-	
+
 	local function downloadVapeAsset(path)
 		if customassetcheck then
 			if not isfile(path) then
@@ -182,7 +182,7 @@ local VERSION = "5.0"
 			end
 		end
 		if not vapeCachedAssets[path] then vapeCachedAssets[path] = getcustomasset(path) end
-		return vapeCachedAssets[path] 
+		return vapeCachedAssets[path]
 	end
 
 	GuiLibrary["UpdateHudEvent"] = Instance.new("BindableEvent")
@@ -303,7 +303,7 @@ local VERSION = "5.0"
 		LegitModulesBigFrame.Visible = false
 		clickgui.Visible = true
 		legitgui.Visible = not clickgui.Visible
-		for i, v in pairs(legitgui:GetChildren()) do 
+		for i, v in pairs(legitgui:GetChildren()) do
 			if v:IsA("Frame") then v.BackgroundTransparency = legitgui.Visible and 0.8 or 1 end
 		end
 	end)
@@ -443,7 +443,7 @@ local VERSION = "5.0"
 					if delta.Y <= 40 then
 						dragging = mod and LegitModulesFrame.Visible or clickgui.Visible
 						startPos = gui.Position
-						
+
 						input.Changed:Connect(function()
 							if input.UserInputState == Enum.UserInputState.End then
 								dragging = false
@@ -486,12 +486,12 @@ local VERSION = "5.0"
 			touchedButton = true
 			local touchtick = tick()
 			local touchposition = inputService:GetMouseLocation()
-			repeat 
+			repeat
 				task.wait()
 				if not touchedButton then break end
-				touchedButton = (inputService:GetMouseLocation() - touchposition).Magnitude < 3
+				touchedButton = (inputService:GetMouseLocation() - touchposition).Magnitude < 6
 			until (tick() - touchtick) > 1 or not touchedButton
-			if touchedButton then 
+			if touchedButton then
 				local ind = table.find(GuiLibrary.MobileButtons, touchButton)
 				if ind then table.remove(GuiLibrary.MobileButtons, ind) end
 				touchButton:Destroy()
@@ -566,12 +566,12 @@ local VERSION = "5.0"
 			if v.Type == "ColorSlider" then
 				GuiLibrary.Settings[i] = {["Type"] = "ColorSlider", ["Hue"] = v["Api"]["Hue"], ["Sat"] = v["Api"]["Sat"], ["Value"] = v["Api"]["Value"], ["RainbowValue"] = v["Api"]["RainbowValue"]}
 			end
-			if v.Type == "LegitModule" then 
+			if v.Type == "LegitModule" then
 				GuiLibrary.Settings[i] = {["Type"] = "LegitModule", ["Enabled"] = v["Api"]["Enabled"], ["Position"] = {v.Object.Position.X.Scale, v.Object.Position.X.Offset, v.Object.Position.Y.Scale, v.Object.Position.Y.Offset}}
 			end
 		end
 		local mobileButtonSaving = {}
-		for _, mobileButton in pairs(GuiLibrary.MobileButtons) do 
+		for _, mobileButton in pairs(GuiLibrary.MobileButtons) do
 			table.insert(mobileButtonSaving, {Position = {mobileButton.Position.X.Offset, mobileButton.Position.Y.Offset}, Module = mobileButton.Text.."OptionsButton"})
 		end
 		GuiLibrary.Settings["MobileButtons"] = {["Type"] = "MobileButtons", ["Buttons"] = mobileButtonSaving}
@@ -604,7 +604,7 @@ local VERSION = "5.0"
 				GuiLibrary.CurrentProfile = i
 			end
 		end
-		if customprofile then 
+		if customprofile then
 			GuiLibrary.Profiles[GuiLibrary.CurrentProfile]["Selected"] = false
 			GuiLibrary.Profiles[customprofile] = GuiLibrary.Profiles[customprofile] or {["Keybind"] = "", ["Selected"] = true}
 			GuiLibrary.CurrentProfile = customprofile
@@ -651,7 +651,7 @@ local VERSION = "5.0"
 							end
 						end
 					end
-					if v.Type == "DropdownMain" then 
+					if v.Type == "DropdownMain" then
 						obj["Api"]["SetValue"](v["Value"])
 					end
 					if v.Type == "ColorSliderMain" then
@@ -677,7 +677,7 @@ local VERSION = "5.0"
 					end
 				end
 				if v.Type == "GUIKeybind" then
-					if (v.Value ~= "RightShift") then 
+					if (v.Value and v.Value ~= "RightShift") then
 						if shared.VapeButton then shared.VapeButton:Destroy() end
 					end
 					GuiLibrary["GUIKeybind"] = v["Value"]
@@ -722,7 +722,7 @@ local VERSION = "5.0"
 							end
 						end
 					end
-					if v.Type == "DropdownMain" then 
+					if v.Type == "DropdownMain" then
 						obj["Api"]["SetValue"](v["Value"])
 					end
 					if v.Type == "ColorSliderMain" then
@@ -733,8 +733,8 @@ local VERSION = "5.0"
 					if v.Type == "Button" then
 						if obj["Type"] == "Toggle" then
 							if obj["Api"]["Default"] then
-								if not v["Enabled"] then 
-									obj["Api"]["ToggleButton"](v["Enabled"], true) 
+								if not v["Enabled"] then
+									obj["Api"]["ToggleButton"](v["Enabled"], true)
 								end
 							else
 								obj["Api"]["ToggleButton"](v["Enabled"], true)
@@ -792,7 +792,7 @@ local VERSION = "5.0"
 							obj["Object3"].Slider.ButtonSlider.Position = UDim2.new(math.clamp(v["Value"], 0.02, 0.95), -9, 0, -7)
 						end)
 					end
-					if v.Type == "LegitModule" then 
+					if v.Type == "LegitModule" then
 						obj.Object.Position = UDim2.new(v["Position"][1], v["Position"][2], v["Position"][3], v["Position"][4])
 						if v["Enabled"] then
 							obj["Api"]["ToggleButton"](true)
@@ -802,10 +802,11 @@ local VERSION = "5.0"
 			end
 			for i,v in pairs(result) do
 				local obj = GuiLibrary.ObjectsThatCanBeSaved[i]
-				if obj then 
+				if obj then
 					if v.Type == "OptionsButton" then
 						if v["Enabled"] and not obj["Api"]["Enabled"] then
-							obj["Api"]["ToggleButton"](false)
+							local suc, res = pcall(function() obj["Api"]["ToggleButton"](false) end)
+							if not suc then print(res) end
 						end
 						if v["Keybind"] ~= "" then
 							obj["Api"]["SetKeybind"](v["Keybind"])
@@ -814,10 +815,10 @@ local VERSION = "5.0"
 				end
 			end
 			for i,v in pairs(result) do
-				if v.Type == "MobileButtons" then 
-					for _, mobileButton in pairs(v.Buttons) do 
+				if v.Type == "MobileButtons" then
+					for _, mobileButton in pairs(v.Buttons) do
 						local module = GuiLibrary.ObjectsThatCanBeSaved[mobileButton.Module]
-						if module then 
+						if module then
 							createMobileButton(module.Api, Vector2.new(mobileButton.Position[1], mobileButton.Position[2]))
 						end
 					end
@@ -849,7 +850,7 @@ local VERSION = "5.0"
 
 	GuiLibrary["RemoveObject"] = function(objname)
 		GuiLibrary.ObjectsThatCanBeSaved[objname]["Object"]:Remove()
-		if GuiLibrary.ObjectsThatCanBeSaved[objname]["Type"] == "OptionsButton" then 
+		if GuiLibrary.ObjectsThatCanBeSaved[objname]["Type"] == "OptionsButton" then
 			GuiLibrary.ObjectsThatCanBeSaved[objname]["ChildrenObject"].Name = "RemovedChildren"
 		end
 		GuiLibrary.ObjectsThatCanBeSaved[objname] = nil
@@ -956,8 +957,8 @@ local VERSION = "5.0"
 						local reqbody = {
 							["nonce"] = game:GetService("HttpService"):GenerateGUID(false),
 							["args"] = {
-								["invite"] = {["code"] = "rQwt7wxpSH"},
-								["code"] = "rQwt7wxpSH",
+								["invite"] = {["code"] = "ZqS836yx9k"},
+								["code"] = "ZqS836yx9k",
 							},
 							["cmd"] = "INVITE_BROWSER"
 						}
@@ -992,7 +993,7 @@ local VERSION = "5.0"
 				local hoverround3 = Instance.new("UICorner")
 				hoverround3.CornerRadius = UDim.new(0, 4)
 				hoverround3.Parent = hoverbox3
-				setclipboard("https://discord.gg/rQwt7wxpSH")
+				setclipboard("https://discord.gg/ZqS836yx9k")
 				task.wait(1)
 				hoverbox3:Remove()
 			end)
@@ -1337,7 +1338,7 @@ local VERSION = "5.0"
 				end
 			end)
 
-			
+
 			GuiLibrary.ObjectsThatCanBeSaved["VapeSettings"..argstable["Name"].."Toggle"] = {["Type"] = "Toggle", ["Object"] = buttontext, ["Api"] = buttonapi}
 			return buttonapi
 		end
@@ -1347,7 +1348,7 @@ local VERSION = "5.0"
 			if text then
 				local dividerlabel = Instance.new("TextLabel")
 				dividerlabel.Size = UDim2.new(1, 0, 0, 30)
-				dividerlabel.BackgroundColor3 = Color3.fromRGB(20, 20, 20) 
+				dividerlabel.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 				dividerlabel.BorderSizePixel = 0
 				dividerlabel.TextColor3 = Color3.fromRGB(85, 84, 85)
 				dividerlabel.TextSize = 14
@@ -1440,11 +1441,11 @@ local VERSION = "5.0"
 				end)
 				windowbackbutton2.Image = downloadVapeAsset("vape/assets/BackIcon.png")
 				windowbackbutton2.Parent = windowtitle
-				button.MouseEnter:Connect(function() 
+				button.MouseEnter:Connect(function()
 					tweenService:Create(button, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(31, 30, 31)}):Play()
 					buttontext.TextColor3 = Color3.fromRGB(200, 200, 200)
 				end)
-				button.MouseLeave:Connect(function() 
+				button.MouseLeave:Connect(function()
 					tweenService:Create(button, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(26, 25, 26)}):Play()
 					buttontext.TextColor3 = Color3.fromRGB(160, 160, 160)
 				end)
@@ -1511,7 +1512,7 @@ local VERSION = "5.0"
 					local uicorner2 = Instance.new("UICorner")
 					uicorner2.CornerRadius = UDim.new(0, 16)
 					uicorner2.Parent = toggleframe2
-			
+
 					buttonapi["Enabled"] = false
 					buttonapi["Keybind"] = ""
 					buttonapi["Default"] = argstable["Default"]
@@ -1562,13 +1563,13 @@ local VERSION = "5.0"
 							tweenService:Create(toggleframe1, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(60, 60, 60)}):Play()
 						end
 					end)
-					
+
 					GuiLibrary.ObjectsThatCanBeSaved[argstable["Name"].."Toggle"] = {["Type"] = "Toggle", ["Object"] = buttontext, ["Api"] = buttonapi}
 					return buttonapi
 				end
 
 				windowapi3["CreateSlider"] = function(argstable)
-				
+
 					local sliderapi = {}
 					local amount2 = #children3:GetChildren()
 					local frame = Instance.new("Frame")
@@ -1756,7 +1757,7 @@ local VERSION = "5.0"
 					local uicorner2 = Instance.new("UICorner")
 					uicorner2.CornerRadius = UDim.new(0, 3)
 					uicorner2.Parent = toggleframe2
-			
+
 					toggleframe1.MouseButton1Click:Connect(function() argstable["Function"]() end)
 					toggleframe1.MouseEnter:Connect(function()
 						tweenService:Create(toggleframe1, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(31, 30, 31)}):Play()
@@ -1764,7 +1765,7 @@ local VERSION = "5.0"
 					toggleframe1.MouseLeave:Connect(function()
 						tweenService:Create(toggleframe1, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(26, 25, 26)}):Play()
 					end)
-					
+
 					return buttonapi
 				end
 
@@ -1864,12 +1865,12 @@ local VERSION = "5.0"
 					end)
 				end
 			end)
-			bindbkg.MouseEnter:Connect(function() 
-				bindimg.Image = downloadVapeAsset("vape/assets/PencilIcon.png") 
+			bindbkg.MouseEnter:Connect(function()
+				bindimg.Image = downloadVapeAsset("vape/assets/PencilIcon.png")
 				bindimg.Visible = true
 				bindtext.Visible = false
 			end)
-			bindbkg.MouseLeave:Connect(function() 
+			bindbkg.MouseLeave:Connect(function()
 				bindimg.Image = downloadVapeAsset("vape/assets/KeybindIcon.png")
 				if GuiLibrary["GUIKeybind"] ~= "" then
 					bindimg.Visible = false
@@ -1907,10 +1908,10 @@ local VERSION = "5.0"
 				[3] = 62,
 				[4] = 90,
 				[5] = 119,
-				[6] = 148, 
+				[6] = 148,
 				[7] = 177
 			}
-			
+
 			local function getclosestcolor(color)
 				local singlecolor = (1 / #slidercolors)
 				for i = 1, #slidercolors do
@@ -2132,7 +2133,7 @@ local VERSION = "5.0"
 					val = math.clamp(val, min, max)
 					text2.BackgroundColor3 = Color3.fromHSV(hue, 0.7, 0.9)
 					slider3.ImageColor3 = Color3.new(1, 1, 1)
-					sliderapi["Hue"] = hue	
+					sliderapi["Hue"] = hue
 					sliderapi["Sat"] = sat
 					sliderapi["Value"] = val
 					pcall(function()
@@ -2328,7 +2329,7 @@ local VERSION = "5.0"
 					tweenService:Create(toggleframe1, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(60, 60, 60)}):Play()
 				end
 			end)
-			
+
 			GuiLibrary.ObjectsThatCanBeSaved[argstable["Name"].."Toggle"] = {["Type"] = "Toggle", ["Object"] = buttontext, ["Api"] = buttonapi}
 			return buttonapi
 		end
@@ -2394,7 +2395,7 @@ local VERSION = "5.0"
 					else
 						button.BackgroundColor3 = Color3.fromRGB(26, 25, 26)
 						buttontext.TextColor3 = Color3.fromRGB(160, 160, 160)
-						if not first then 
+						if not first then
 							arrow:TweenPosition(UDim2.new(1, -20, 0, 16), Enum.EasingDirection.InOut, Enum.EasingStyle.Quad, 0.2, true)
 						end
 						if buttonicon then
@@ -2407,7 +2408,7 @@ local VERSION = "5.0"
 			end
 
 			button.MouseButton1Click:Connect(function() buttonapi["ToggleButton"](true) end)
-			button.MouseEnter:Connect(function() 
+			button.MouseEnter:Connect(function()
 				if overlaysbkg.Visible == false then
 					if not buttonapi["Enabled"] then
 						tweenService:Create(button, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(31, 30, 31)}):Play()
@@ -2418,7 +2419,7 @@ local VERSION = "5.0"
 					end
 				end
 			end)
-			button.MouseLeave:Connect(function() 
+			button.MouseLeave:Connect(function()
 				if overlaysbkg.Visible == false then
 					if not buttonapi["Enabled"] then
 						tweenService:Create(button, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(26, 25, 26)}):Play()
@@ -2484,7 +2485,7 @@ local VERSION = "5.0"
 		expandbutton.Image = downloadVapeAsset("vape/assets/PinButton.png")
 		expandbutton.ImageColor3 = Color3.fromRGB(84, 84, 84)
 		expandbutton.BackgroundTransparency = 1
-		expandbutton.Name = "PinButton" 
+		expandbutton.Name = "PinButton"
 		expandbutton.Position = UDim2.new(1, -47, 0, 13)
 		expandbutton.Parent = windowtitle
 		local optionsbutton = Instance.new("ImageButton")
@@ -2516,14 +2517,14 @@ local VERSION = "5.0"
 		uilistlayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
 			if children2.Visible then
 				windowtitle.Size = UDim2.new(0, 220, 0, 45 + uilistlayout.AbsoluteContentSize.Y * (1 / GuiLibrary["MainRescale"].Scale))
-				
+
 			end
 		end)
 		dragGUI(windowtitle)
 		windowapi["Pinned"] = false
 		windowapi["RealVis"] = false
 		windowapi["Bypass"] = argstablemain["Bypass"]
-		
+
 		windowapi["CheckVis"] = function()
 			if windowapi["RealVis"] then
 				if clickgui.Visible then
@@ -2554,7 +2555,7 @@ local VERSION = "5.0"
 			end
 			windowshadow.Visible = (windowtitle.Size ~= UDim2.new(0, 220, 0, 0))
 		end
-		
+
 		windowapi["SetVisible"] = function(value)
 			windowapi["RealVis"] = value
 			windowapi["CheckVis"]()
@@ -2573,7 +2574,7 @@ local VERSION = "5.0"
 		end
 
 		windowapi["CreateSlider"] = function(argstable)
-				
+
 			local sliderapi = {}
 			local amount2 = #children2:GetChildren()
 			local frame = Instance.new("Frame")
@@ -2770,7 +2771,7 @@ local VERSION = "5.0"
 				end
 			end
 
-			framebox.FocusLost:Connect(function(enter) 
+			framebox.FocusLost:Connect(function(enter)
 				textGuiLibrary["SetValue"](framebox.Text, true)
 				if argstable["FocusLost"] then
 					argstable["FocusLost"](enter)
@@ -2898,7 +2899,7 @@ local VERSION = "5.0"
 			uilistlayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
 				windowtitle.Size = UDim2.new(0, 220, 0, 45 + uilistlayout.AbsoluteContentSize.Y)
 			end)
-		
+
 			windowapi3["UpdateIgnore"] = function()
 				local str = ""
 				for i,v in pairs(buttonreturned["CircleList"]["ObjectList"]) do
@@ -2915,7 +2916,7 @@ local VERSION = "5.0"
 				end
 				targettext.Text = "  "..argstablemain3["Name"].." \n "..'<font color="rgb(151, 151, 151)">'..str..'</font>'
 			end
-		
+
 			windowapi3["CreateCircleTextList"] = function(argstable)
 				local textGuiLibrary = {}
 				local amount = #children:GetChildren()
@@ -2985,7 +2986,7 @@ local VERSION = "5.0"
 					scrollframe.Size = UDim2.new(0, 220, 0, math.clamp(uilistlayout3.AbsoluteContentSize.Y, 1, 105))
 					scrollframebkg.Size = UDim2.new(0, 220, 0, math.clamp(uilistlayout3.AbsoluteContentSize.Y, 1, 105) + 3)
 				end)
-		
+
 				textGuiLibrary["Object"] = frame
 				textGuiLibrary["ScrollingObject"] = scrollframebkg
 				textGuiLibrary["ObjectList"] = {}
@@ -3041,7 +3042,7 @@ local VERSION = "5.0"
 						friendcircle2.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 						friendcircle2.Position = UDim2.new(0, 1, 0, 1)
 						friendcircle2.Visible = not objenabled
-						friendcircle2.Parent = friendcircle	
+						friendcircle2.Parent = friendcircle
 						itemframe:GetPropertyChangedSignal("BackgroundColor3"):Connect(function()
 							friendcircle2.BackgroundColor3 = itemframe.BackgroundColor3
 						end)
@@ -3079,7 +3080,7 @@ local VERSION = "5.0"
 						end)
 					end
 				end
-		
+
 				GuiLibrary.ObjectsThatCanBeSaved[argstablemain["Name"]..argstable["Name"].."TextCircleList"] = {["Type"] = "TextCircleList", ["Api"] = textGuiLibrary}
 				local function AddToList()
 					local num = #textGuiLibrary["ObjectList"] + 1
@@ -3087,7 +3088,7 @@ local VERSION = "5.0"
 					textGuiLibrary["ObjectListEnabled"][num] = true
 					textGuiLibrary["RefreshValues"](textGuiLibrary["ObjectList"])
 					if argstable["AddFunction"] then
-						argstable["AddFunction"](textbox.Text) 
+						argstable["AddFunction"](textbox.Text)
 					end
                     textbox.Text = ""
                 end
@@ -3100,7 +3101,7 @@ local VERSION = "5.0"
                 end)
 				return textGuiLibrary
 			end
-		
+
 			--[[windowapi3["CreateButton"] = function(argstable)
 				local buttonapi = {}
 				local amount = #children:GetChildren()
@@ -3148,7 +3149,7 @@ local VERSION = "5.0"
 				buttonround2.Parent = buttonbkg
 				buttonapi["Enabled"] = false
 				buttonapi["Default"] = argstable["Default"]
-		
+
 				buttonapi["ToggleButton"] = function(toggle, frist)
 					buttonapi["Enabled"] = toggle
 					buttontexticon.Visible = toggle
@@ -3168,7 +3169,7 @@ local VERSION = "5.0"
 					buttonimage.ImageColor3 = (buttonapi["Enabled"] and Color3.new(1, 1, 1) or Color3.fromRGB(121, 121, 121))
 					argstable["Function"](buttonapi["Enabled"])
 				end
-		
+
 				if argstable["Default"] then
 					buttonapi["ToggleButton"](argstable["Default"], true)
 				end
@@ -3181,7 +3182,7 @@ local VERSION = "5.0"
 				Name = "CircleList",
 				Color = (argstablemain3["Type"] == "Blacklist" and Color3.fromRGB(250, 50, 56) or Color3.fromRGB(5, 134, 105))
 			})
-		
+
 			drop1.MouseButton1Click:Connect(function()
 				windowtitle.Visible = not windowtitle.Visible
 				if not windowtitle.Visible then
@@ -3198,9 +3199,9 @@ local VERSION = "5.0"
 					tweenService:Create(thing, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(38, 37, 38)}):Play()
 				end
 			end)
-		
+
 			GuiLibrary.ObjectsThatCanBeSaved[argstablemain["Name"].."CircleListFrame"] = {["Type"] = "CircleListFrame", ["Object"] = frame, ["Object2"] = windowtitle, ["Api"] = buttonreturned}
-		
+
 			return buttonreturned
 		end
 
@@ -3622,7 +3623,7 @@ local VERSION = "5.0"
 			GuiLibrary.ObjectsThatCanBeSaved[argstablemain["Name"]..argstable["Name"].."Toggle"] = {["Type"] = "ToggleMain", ["Object"] = buttontext, ["Api"] = buttonapi}
 			return buttonapi
 		end
-		
+
 		windowapi["PinnedToggle"] = function()
 			windowapi["Pinned"] = not windowapi["Pinned"]
 			if windowapi["Pinned"] then
@@ -3631,19 +3632,19 @@ local VERSION = "5.0"
 				expandbutton.ImageColor3 = Color3.fromRGB(84, 84, 84)
 			end
 		end
-		
+
 		clickgui:GetPropertyChangedSignal("Visible"):Connect(windowapi["CheckVis"])
 		windowapi["CheckVis"]()
-		
+
 		windowapi["GetCustomChildren"] = function()
 			return children
 		end
-		
+
 		expandbutton.MouseButton1Click:Connect(windowapi["PinnedToggle"])
 		windowtitle.MouseButton2Click:Connect(windowapi["ExpandToggle"])
 		optionsbutton.MouseButton1Click:Connect(windowapi["ExpandToggle"])
 		GuiLibrary.ObjectsThatCanBeSaved[argstablemain["Name"].."CustomWindow"] = {["Object"] = windowtitle, ["ChildrenObject"] = children, ["Type"] = "CustomWindow", ["Api"] = windowapi}
-		
+
 		return windowapi
 	end
 
@@ -3882,7 +3883,7 @@ local VERSION = "5.0"
 			bindround.CornerRadius = UDim.new(0, 6)
 			bindround.Parent = bindbkg
 			if argstablemain["HoverText"] and type(argstablemain["HoverText"]) == "string" then
-				button.MouseEnter:Connect(function() 
+				button.MouseEnter:Connect(function()
 					hoverbox.Visible = (GuiLibrary["ToggleTooltips"] and hoverbox.TextSize ~= 1)
 					local textsize = textService:GetTextSize(argstablemain["HoverText"], hoverbox.TextSize, hoverbox.Font, Vector2.new(99999, 99999))
 					hoverbox.Text = " "..argstablemain["HoverText"]:gsub("\n", "\n ")
@@ -3902,7 +3903,7 @@ local VERSION = "5.0"
 			buttonapi["GetExtraText"] = (buttonapi["HasExtraText"] and argstablemain["ExtraText"] or function() return "" end)
 			buttonapi.Connections = {}
 			local newsize = UDim2.new(0, 20, 0, 21)
-			
+
 			buttonapi["SetKeybind"] = function(key)
 				if key == "" then
 					buttonapi["Keybind"] = key
@@ -3963,7 +3964,7 @@ local VERSION = "5.0"
 						if v:IsA("TextButton") then
 							v.Visible = true
 						end
-					end	
+					end
 					windowicon.Visible = true
 					windowbackbutton.Visible = false
 					children2.Visible = false
@@ -4053,7 +4054,7 @@ local VERSION = "5.0"
 					scrollframe.Size = UDim2.new(0, 220, 0, math.clamp(uilistlayout3.AbsoluteContentSize.Y, 1, 105))
 					scrollframebkg.Size = UDim2.new(0, 220, 0, math.clamp(uilistlayout3.AbsoluteContentSize.Y, 1, 105) + 3)
 				end)
-		
+
 				textGuiLibrary["Object"] = frame
 				textGuiLibrary["ScrollingObject"] = scrollframebkg
 				textGuiLibrary["ObjectList"] = {}
@@ -4108,11 +4109,11 @@ local VERSION = "5.0"
 					end
 				end
 
-                local function AddToList() 
+                local function AddToList()
 					table.insert(textGuiLibrary["ObjectList"], textbox.Text)
 					textGuiLibrary["RefreshValues"](textGuiLibrary["ObjectList"])
 					if argstable["AddFunction"] then
-						argstable["AddFunction"](textbox.Text) 
+						argstable["AddFunction"](textbox.Text)
 					end
                     textbox.Text = ""
 				end
@@ -4161,7 +4162,7 @@ local VERSION = "5.0"
 				textbox.PlaceholderText = argstable["TempText"]
 				textbox.TextSize = 17
 				textbox.Parent = textboxbkg
-				
+
 				textGuiLibrary["Object"] = frame
 				textGuiLibrary["Value"] = ""
 				textGuiLibrary["SetValue"] = function(val, entered)
@@ -4172,7 +4173,7 @@ local VERSION = "5.0"
 					end
 				end
 
-				textbox.FocusLost:Connect(function(enter) 
+				textbox.FocusLost:Connect(function(enter)
 					textGuiLibrary["SetValue"](textbox.Text, true)
 					if argstable["FocusLost"] then
 						argstable["FocusLost"](enter)
@@ -4421,7 +4422,7 @@ local VERSION = "5.0"
 							tweenService:Create(toggleframe1, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(60, 60, 60)}):Play()
 						end
 					end)
-			
+
 					GuiLibrary.ObjectsThatCanBeSaved[argstablemain["Name"]..argstable["Name"].."TargetToggle"] = {["Type"] = "Toggle", ["Object"] = buttontext, ["Api"] = buttonapi}
 					return buttonapi
 				end
@@ -4776,7 +4777,7 @@ local VERSION = "5.0"
 						scrollframe.Size = UDim2.new(0, 220, 0, math.clamp(uilistlayout3.AbsoluteContentSize.Y, 1, 105))
 						scrollframebkg.Size = UDim2.new(0, 220, 0, math.clamp(uilistlayout3.AbsoluteContentSize.Y, 1, 105) + 3)
 					end)
-			
+
 					textGuiLibrary["Object"] = frame
 					textGuiLibrary["ScrollingObject"] = scrollframebkg
 					textGuiLibrary["ObjectList"] = {}
@@ -4832,7 +4833,7 @@ local VERSION = "5.0"
 							friendcircle2.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 							friendcircle2.Position = UDim2.new(0, 1, 0, 1)
 							friendcircle2.Visible = not objenabled
-							friendcircle2.Parent = friendcircle	
+							friendcircle2.Parent = friendcircle
 							itemframe:GetPropertyChangedSignal("BackgroundColor3"):Connect(function()
 								friendcircle2.BackgroundColor3 = itemframe.BackgroundColor3
 							end)
@@ -4870,7 +4871,7 @@ local VERSION = "5.0"
 							end)
 						end
 					end
-			
+
 					GuiLibrary.ObjectsThatCanBeSaved[argstablemain["Name"]..argstable["Name"].."TextCircleList"] = {["Type"] = "TextCircleList", ["Api"] = textGuiLibrary}
 					local function AddToList()
                         local num = #textGuiLibrary["ObjectList"] + 1
@@ -4878,7 +4879,7 @@ local VERSION = "5.0"
                         textGuiLibrary["ObjectListEnabled"][num] = true
                         textGuiLibrary["RefreshValues"](textGuiLibrary["ObjectList"])
                         if argstable["AddFunction"] then
-                            argstable["AddFunction"](textbox.Text) 
+                            argstable["AddFunction"](textbox.Text)
                         end
                         textbox.Text = ""
                     end
@@ -5340,7 +5341,7 @@ local VERSION = "5.0"
 				sliderval.Slider.ButtonSlider.MouseButton1Down:Connect(function()
 					slidercode(sliderval.Slider, "Value")
 				end)
-				
+
 				frame.MouseEnter:Connect(function()
 					if argstable["HoverText"] and type(argstable["HoverText"]) == "string" then
 						hoverbox.Visible = (GuiLibrary["ToggleTooltips"] and hoverbox.TextSize ~= 1)
@@ -5522,7 +5523,7 @@ local VERSION = "5.0"
 			end
 
 			buttonapi["CreateTwoSlider"] = function(argstable)
-				
+
 				local sliderapi = {}
 				local amount2 = #children2:GetChildren()
 				local frame = Instance.new("Frame")
@@ -5779,7 +5780,7 @@ local VERSION = "5.0"
 						tweenService:Create(toggleframe1, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(60, 60, 60)}):Play()
 					end
 				end)
-		
+
 				GuiLibrary.ObjectsThatCanBeSaved[argstablemain["Name"]..argstable["Name"].."Toggle"] = {["Type"] = "Toggle", ["Object"] = buttontext, ["Api"] = buttonapi}
 				return buttonapi
 			end
@@ -5787,31 +5788,31 @@ local VERSION = "5.0"
 			if argstablemain["Default"] then
 				buttonapi["ToggleButton"](false, true)
 			end
-			button.MouseButton1Click:Connect(function() 
-				buttonapi["ToggleButton"](true) 
+			button.MouseButton1Click:Connect(function()
+				buttonapi["ToggleButton"](true)
 			end)
-			if inputService.TouchEnabled then 
+			if inputService.TouchEnabled then
 				local touchedButton = false
-				modulebutton.MouseButton1Down:Connect(function()
+				button.MouseButton1Down:Connect(function()
 					touchedButton = true
 					local touchtick = tick()
 					local touchposition = inputService:GetMouseLocation()
-					repeat 
+					repeat
 						task.wait()
 						if not touchedButton then break end
-						touchedButton = (inputService:GetMouseLocation() - touchposition).Magnitude < 3
+						touchedButton = (inputService:GetMouseLocation() - touchposition).Magnitude < 6
 					until (tick() - touchtick) > 1 or not touchedButton or not clickgui.Visible
-					if touchedButton and clickgui.Visible then 
+					if touchedButton and clickgui.Visible then
 						clickgui.Visible = false
 						--runService:SetRobloxGuiFocused(guiService:GetErrorType() ~= Enum.ConnectionError.OK)
-						for _, mobileButton in pairs(GuiLibrary.MobileButtons) do mobileButton.Visible = not clickgui.Visible end	
+						for _, mobileButton in pairs(GuiLibrary.MobileButtons) do mobileButton.Visible = not clickgui.Visible end
 						local touchconnection
 						touchconnection = inputService.InputBegan:Connect(function(inputType)
-							if inputType.UserInputType == Enum.UserInputType.Touch then 
+							if inputType.UserInputType == Enum.UserInputType.Touch then
 								createMobileButton(buttonapi, inputType.Position + Vector3.new(0, guiService:GetGuiInset().Y, 0))
 								clickgui.Visible = true
 								--runService:SetRobloxGuiFocused((clickgui.Visible or guiService:GetErrorType() ~= Enum.ConnectionError.OK) and mainapi.Blur.Enabled)
-								for _, mobileButton in pairs(GuiLibrary.MobileButtons) do mobileButton.Visible = not clickgui.Visible end	
+								for _, mobileButton in pairs(GuiLibrary.MobileButtons) do mobileButton.Visible = not clickgui.Visible end
 								touchconnection:Disconnect()
 							end
 						end)
@@ -5821,17 +5822,17 @@ local VERSION = "5.0"
 					touchedButton = false
 				end)
 			end
-			button.MouseEnter:Connect(function() 
+			button.MouseEnter:Connect(function()
 				bindbkg.Visible = true
 				if not buttonapi["Enabled"] then
 					currenttween = tweenService:Create(button, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(31, 30, 31)})
 					currenttween:Play()
 				end
 			end)
-			button.MouseLeave:Connect(function() 
+			button.MouseLeave:Connect(function()
 				hoverbox.Visible = false
 				if buttonapi["Keybind"] == "" then
-					bindbkg.Visible = false 
+					bindbkg.Visible = false
 				end
 				if not buttonapi["Enabled"] then
 					currenttween = tweenService:Create(button, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(26, 25, 26)})
@@ -5869,14 +5870,14 @@ local VERSION = "5.0"
 					end)
 				end
 			end)
-			bindbkg.MouseEnter:Connect(function() 
-				bindimg.Image = downloadVapeAsset("vape/assets/PencilIcon.png") 
+			bindbkg.MouseEnter:Connect(function()
+				bindimg.Image = downloadVapeAsset("vape/assets/PencilIcon.png")
 				bindimg.Visible = true
 				bindtext.Visible = false
 				bindbkg.Size = UDim2.new(0, 20, 0, 21)
 				bindbkg.Position = UDim2.new(1, -56, 0, 9)
 			end)
-			bindbkg.MouseLeave:Connect(function() 
+			bindbkg.MouseLeave:Connect(function()
 				bindimg.Image = downloadVapeAsset("vape/assets/KeybindIcon.png")
 				if buttonapi["Keybind"] ~= "" then
 					bindimg.Visible = false
@@ -5897,7 +5898,7 @@ local VERSION = "5.0"
 			end
 			table.sort(sorttable1)
 			for i2,v2 in pairs(sorttable1) do
-				if v2:find("Button") then 
+				if v2:find("Button") then
 					local findstr = v2:gsub("Button", "Children")
 					local sortnum = i2
 					local findstr2 = v2:gsub("Button", "OptionsButton")
@@ -6220,7 +6221,7 @@ local VERSION = "5.0"
 			sliderval.Slider.ButtonSlider.MouseButton1Down:Connect(function()
 				slidercode(sliderval.Slider, "Value")
 			end)
-			
+
 			frame.MouseEnter:Connect(function()
 				if argstable["HoverText"] and type(argstable["HoverText"]) == "string" then
 					hoverbox.Visible = (GuiLibrary["ToggleTooltips"] and hoverbox.TextSize ~= 1)
@@ -6469,11 +6470,11 @@ local VERSION = "5.0"
 				GuiLibrary.ObjectsThatCanBeSaved[argstable["Name"].."TextList"] = {["Type"] = "TextList", ["Api"] = textGuiLibrary}
 			end
 
-			local function AddToList() 
+			local function AddToList()
                 table.insert(textGuiLibrary["ObjectList"], textbox.Text)
                 textGuiLibrary["RefreshValues"](textGuiLibrary["ObjectList"])
                 if argstable["AddFunction"] then
-                    argstable["AddFunction"](textbox.Text) 
+                    argstable["AddFunction"](textbox.Text)
                 end
                 textbox.Text = ""
             end
@@ -6605,7 +6606,7 @@ local VERSION = "5.0"
 					friendcircle2.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 					friendcircle2.Position = UDim2.new(0, 1, 0, 1)
 					friendcircle2.Visible = not objenabled
-					friendcircle2.Parent = friendcircle	
+					friendcircle2.Parent = friendcircle
 					itemframe:GetPropertyChangedSignal("BackgroundColor3"):Connect(function()
 						friendcircle2.BackgroundColor3 = itemframe.BackgroundColor3
 					end)
@@ -6651,7 +6652,7 @@ local VERSION = "5.0"
                 textGuiLibrary["ObjectListEnabled"][num] = true
                 textGuiLibrary["RefreshValues"](textGuiLibrary["ObjectList"])
                 if argstable["AddFunction"] then
-                    argstable["AddFunction"](textbox.Text) 
+                    argstable["AddFunction"](textbox.Text)
                 end
                 textbox.Text = ""
             end
@@ -6746,13 +6747,13 @@ local VERSION = "5.0"
 			legittable.Function(legitapi.Enabled)
 		end
 		legitframe.MouseButton1Click:Connect(function() legitapi["ToggleButton"](not legitapi["Enabled"], false) end)
-		
+
 		legitapi["GetCustomChildren"] = function()
 			return customlegit
 		end
 
 		GuiLibrary.ObjectsThatCanBeSaved[legittable.Name.."LegitModule"] = {Api = legitapi, Type = "LegitModule", Object = customlegit, Toggle = toggleframe1}
-		return legitapi	
+		return legitapi
 	end
 
 	local function bettertween(obj, newpos, dir, style, tim, override)
@@ -6891,15 +6892,14 @@ local VERSION = "5.0"
 	GuiLibrary["LoadedAnimation"] = function(enabled)
 		if enabled then
 			--no cache but its ran 1 time so idc
-			local bad = not (inputService:GetPlatform() == Enum.Platform.Windows or inputService:GetPlatform() == Enum.Platform.OSX)
-			GuiLibrary.CreateNotification("Finished Loading", bad and GuiLibrary["GUIKeybind"] == "RightShift" and "Press the button in the top right to open GUI" or "Press "..string.upper(GuiLibrary["GUIKeybind"]).." to open GUI", 5)
+			GuiLibrary.CreateNotification("Finished Loading", inputService.TouchEnabled and GuiLibrary["GUIKeybind"] == "RightShift" and "Press the button in the top right to open GUI" or "Press "..string.upper(GuiLibrary["GUIKeybind"]).." to open GUI", 5)
 		end
 	end
 
 	local holdingalt = false
 	local uninjected = false
 
-	if inputService.TouchEnabled or inputService:GetPlatform() == Enum.Platform.UWP then 
+	if inputService.TouchEnabled then
 		local button = Instance.new("TextButton")
 		button.Position = UDim2.new(1, -30, 0, 0)
 		button.Text = "Vape"
@@ -6912,16 +6912,16 @@ local VERSION = "5.0"
 		button.MouseButton1Click:Connect(function()
 			clickgui.Visible = not clickgui.Visible
 			legitgui.Visible = not clickgui.Visible
-			inputService.OverrideMouseIconBehavior = (clickgui.Visible and Enum.OverrideMouseIconBehavior.ForceShow or game:GetService("VRService").VREnabled and Enum.OverrideMouseIconBehavior.ForceHide or Enum.OverrideMouseIconBehavior.None)
-			--game:GetService("RunService"):SetRobloxGuiFocused(clickgui.Visible and GuiLibrary["MainBlur"].Size ~= 0 or guiService:GetErrorType() ~= Enum.ConnectionError.OK)	
-			for _, mobileButton in pairs(GuiLibrary.MobileButtons) do mobileButton.Visible = not clickgui.Visible end	
+			--inputService.OverrideMouseIconBehavior = (clickgui.Visible and Enum.OverrideMouseIconBehavior.ForceShow or game:GetService("VRService").VREnabled and Enum.OverrideMouseIconBehavior.ForceHide or Enum.OverrideMouseIconBehavior.None)
+			--game:GetService("RunService"):SetRobloxGuiFocused(clickgui.Visible and GuiLibrary["MainBlur"].Size ~= 0 or guiService:GetErrorType() ~= Enum.ConnectionError.OK)
+			for _, mobileButton in pairs(GuiLibrary.MobileButtons) do mobileButton.Visible = not clickgui.Visible end
 			if OnlineProfilesBigFrame.Visible then
 				OnlineProfilesBigFrame.Visible = false
 			end
 			if LegitModulesBigFrame.Visible then
 				LegitModulesBigFrame.Visible = false
 				legitgui.Visible = not clickgui.Visible
-				for i, v in pairs(legitgui:GetChildren()) do 
+				for i, v in pairs(legitgui:GetChildren()) do
 					if v:IsA("Frame") then v.BackgroundTransparency = legitgui.Visible and 0.8 or 1 end
 				end
 			end
@@ -6934,24 +6934,24 @@ local VERSION = "5.0"
 			if input1.KeyCode == Enum.KeyCode[GuiLibrary["GUIKeybind"]] and GuiLibrary["KeybindCaptured"] == false then
 				clickgui.Visible = not clickgui.Visible
 				legitgui.Visible = not clickgui.Visible
-				inputService.OverrideMouseIconBehavior = (clickgui.Visible and Enum.OverrideMouseIconBehavior.ForceShow or game:GetService("VRService").VREnabled and Enum.OverrideMouseIconBehavior.ForceHide or Enum.OverrideMouseIconBehavior.None)
-				--game:GetService("RunService"):SetRobloxGuiFocused(clickgui.Visible and GuiLibrary["MainBlur"].Size ~= 0 or guiService:GetErrorType() ~= Enum.ConnectionError.OK)	
-				for _, mobileButton in pairs(GuiLibrary.MobileButtons) do mobileButton.Visible = not clickgui.Visible end	
+				--inputService.OverrideMouseIconBehavior = (clickgui.Visible and Enum.OverrideMouseIconBehavior.ForceShow or game:GetService("VRService").VREnabled and Enum.OverrideMouseIconBehavior.ForceHide or Enum.OverrideMouseIconBehavior.None)
+				--game:GetService("RunService"):SetRobloxGuiFocused(clickgui.Visible and GuiLibrary["MainBlur"].Size ~= 0 or guiService:GetErrorType() ~= Enum.ConnectionError.OK)
+				for _, mobileButton in pairs(GuiLibrary.MobileButtons) do mobileButton.Visible = not clickgui.Visible end
 				if OnlineProfilesBigFrame.Visible then
 					OnlineProfilesBigFrame.Visible = false
 				end
 				if LegitModulesBigFrame.Visible then
 					LegitModulesBigFrame.Visible = false
 					legitgui.Visible = not clickgui.Visible
-					for i, v in pairs(legitgui:GetChildren()) do 
+					for i, v in pairs(legitgui:GetChildren()) do
 						if v:IsA("Frame") then v.BackgroundTransparency = legitgui.Visible and 0.8 or 1 end
 					end
 				end
 			end
-			if input1.KeyCode == Enum.KeyCode.RightAlt then 
+			if input1.KeyCode == Enum.KeyCode.RightAlt then
 				holdingalt = true
 			end
-			if input1.KeyCode == Enum.KeyCode.Home and holdingalt and (not uninjected) then 
+			if input1.KeyCode == Enum.KeyCode.Home and holdingalt and (not uninjected) then
 				GuiLibrary["SelfDestruct"]()
 				uninjected = true
 			end
@@ -7061,7 +7061,7 @@ local VERSION = "5.0"
 		LegitModulesBigFrame.Visible = true
 		clickgui.Visible = false
 		legitgui.Visible = not clickgui.Visible
-		for i, v in pairs(legitgui:GetChildren()) do 
+		for i, v in pairs(legitgui:GetChildren()) do
 			if v:IsA("Frame") then v.BackgroundTransparency = legitgui.Visible and 0.8 or 1 end
 		end
 	end)
