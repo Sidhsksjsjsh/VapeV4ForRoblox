@@ -240,7 +240,7 @@ if not isfile("vape/CustomModules/cachechecked.txt") then
 	writefile("vape/CustomModules/cachechecked.txt", "verified")
 end
 
-GuiLibrary = loadstring(vapeGithubRequest("GuiLibrary.lua"))()
+GuiLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/VapeV4ForRoblox/main/GuiLibrary.lua"))() --loadstring(vapeGithubRequest("GuiLibrary.lua"))()
 shared.GuiLibrary = GuiLibrary
 
 local saveSettingsLoop = coroutine.create(function()
