@@ -1666,7 +1666,7 @@ local VERSION = "5.0"
 						local move
 						local kill
 						move = inputService.InputChanged:Connect(function(input)
-							if input.UserInputType == Enum.UserInputType.MouseMovement then
+							if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
 								local x,y,xscale,yscale,xscale2 = RelativeXY(slider1, inputService:GetMouseLocation())
 								sliderapi["SetValue"](math.floor(argstable["Min"] + ((argstable["Max"] - argstable["Min"]) * xscale)))
 								text2.Text = sliderapi["Value"] .. ".0 "..(argstable["Percent"] and "%" or " ").." "
@@ -1674,7 +1674,7 @@ local VERSION = "5.0"
 							end
 						end)
 						kill = inputService.InputEnded:Connect(function(input)
-							if input.UserInputType == Enum.UserInputType.MouseButton1 then
+							if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 								move:Disconnect()
 								kill:Disconnect()
 							end
@@ -1983,14 +1983,14 @@ local VERSION = "5.0"
 					local move
 					local kill
 					move = inputService.InputChanged:Connect(function(input)
-						if input.UserInputType == Enum.UserInputType.MouseMovement then
+						if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
 							local x,y,xscale,yscale,xscale2 = RelativeXY(obj, inputService:GetMouseLocation())
 							sliderapi["SetValue"]((changeType == "Hue" and (min + ((max - min) * xscale)) or sliderapi["Hue"]), (changeType == "Sat" and (min + ((max - min) * xscale)) or sliderapi["Sat"]), (changeType == "Value" and (min + ((max - min) * xscale)) or sliderapi["Value"]))
 							obj.ButtonSlider.Position = UDim2.new(math.clamp(xscale2, 0.02, 0.95), -9, 0, -7)
 						end
 					end)
 					kill = inputService.InputEnded:Connect(function(input)
-						if input.UserInputType == Enum.UserInputType.MouseButton1 then
+						if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 							move:Disconnect()
 							kill:Disconnect()
 						end
@@ -2188,14 +2188,14 @@ local VERSION = "5.0"
 				local move
 				local kill
 				move = inputService.InputChanged:Connect(function(input)
-					if input.UserInputType == Enum.UserInputType.MouseMovement then
+					if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
 						local x,y,xscale,yscale,xscale2 = RelativeXY(slider1, inputService:GetMouseLocation())
 						sliderapi["SetValue"](min + ((max - min) * xscale))
 					--	slider3.Position = UDim2.new(math.clamp(xscale2, 0.02, 0.95), -9, 0, -5)
 					end
 				end)
 				kill = inputService.InputEnded:Connect(function(input)
-					if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 						move:Disconnect()
 						kill:Disconnect()
 					end
@@ -2214,14 +2214,14 @@ local VERSION = "5.0"
 				local move
 				local kill
 				move = inputService.InputChanged:Connect(function(input)
-					if input.UserInputType == Enum.UserInputType.MouseMovement then
+					if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
 						local x,y,xscale,yscale,xscale2 = RelativeXY(slider1, inputService:GetMouseLocation())
 						sliderapi["SetValue"](min + ((max - min) * xscale), 0.7, 0.9)
 					--	slider3.Position = UDim2.new(math.clamp(xscale2, 0.02, 0.95), -9, 0, -5)
 					end
 				end)
 				kill = inputService.InputEnded:Connect(function(input)
-					if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 						move:Disconnect()
 						kill:Disconnect()
 					end
@@ -3462,14 +3462,14 @@ local VERSION = "5.0"
 				local move
 				local kill
 				move = inputService.InputChanged:Connect(function(input)
-					if input.UserInputType == Enum.UserInputType.MouseMovement then
+					if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
 						local x,y,xscale,yscale,xscale2 = RelativeXY(slider1, inputService:GetMouseLocation())
 						sliderapi["SetValue"](min + ((max - min) * xscale))
 						slider3.Position = UDim2.new(math.clamp(xscale2, 0.02, 0.95), -9, 0, -7)
 					end
 				end)
 				kill = inputService.InputEnded:Connect(function(input)
-					if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 						move:Disconnect()
 						kill:Disconnect()
 					end
@@ -5310,14 +5310,14 @@ local VERSION = "5.0"
 					local move
 					local kill
 					move = inputService.InputChanged:Connect(function(input)
-						if input.UserInputType == Enum.UserInputType.MouseMovement then
+						if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
 							local x,y,xscale,yscale,xscale2 = RelativeXY(obj, inputService:GetMouseLocation())
 							sliderapi["SetValue"]((valtochange == "Hue" and (min + ((max - min) * xscale)) or false), (valtochange == "Sat" and (min + ((max - min) * xscale)) or false), (valtochange == "Value" and (min + ((max - min) * xscale)) or false))
 							obj.ButtonSlider.Position = UDim2.new(math.clamp(xscale2, 0.02, 0.95), -9, 0, -7)
 						end
 					end)
 					kill = inputService.InputEnded:Connect(function(input)
-						if input.UserInputType == Enum.UserInputType.MouseButton1 then
+						if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 							move:Disconnect()
 							kill:Disconnect()
 						end
@@ -5467,7 +5467,7 @@ local VERSION = "5.0"
 					local move
 					local kill
 					move = inputService.InputChanged:Connect(function(input)
-						if input.UserInputType == Enum.UserInputType.MouseMovement then
+						if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
 							local x,y,xscale,yscale,xscale2 = RelativeXY(slider1, inputService:GetMouseLocation())
 							sliderapi["SetValue"](math.floor(argstable["Min"] + ((argstable["Max"] - argstable["Min"]) * xscale)))
 							local doublecheck = argstable["Double"] and (sliderapi["Value"] / argstable["Double"]) or sliderapi["Value"]
@@ -5476,7 +5476,7 @@ local VERSION = "5.0"
 						end
 					end)
 					kill = inputService.InputEnded:Connect(function(input)
-						if input.UserInputType == Enum.UserInputType.MouseButton1 then
+						if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 							move:Disconnect()
 							kill:Disconnect()
 						end
@@ -5637,7 +5637,7 @@ local VERSION = "5.0"
 					local move
 					local kill
 					move = inputService.InputChanged:Connect(function(input)
-						if input.UserInputType == Enum.UserInputType.MouseMovement then
+						if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
 							local x,y,xscale,yscale,xscale2 = RelativeXY(slider1, inputService:GetMouseLocation())
 							sliderapi["SetValue"](math.floor(argstable["Min"] + ((argstable["Max"] - argstable["Min"]) * xscale)))
 						--	slider3.Position = UDim2.new(xscale2, -8, 1, -9)
@@ -5645,7 +5645,7 @@ local VERSION = "5.0"
 						end
 					end)
 					kill = inputService.InputEnded:Connect(function(input)
-						if input.UserInputType == Enum.UserInputType.MouseButton1 then
+						if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 							move:Disconnect()
 							kill:Disconnect()
 						end
@@ -5658,7 +5658,7 @@ local VERSION = "5.0"
 					local move
 					local kill
 					move = inputService.InputChanged:Connect(function(input)
-						if input.UserInputType == Enum.UserInputType.MouseMovement then
+						if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
 							local x,y,xscale,yscale,xscale2 = RelativeXY(slider1, inputService:GetMouseLocation())
 							sliderapi["SetValue2"](math.floor(argstable["Min"] + ((argstable["Max"] - argstable["Min"]) * xscale)))
 							--slider4.Position = UDim2.new(xscale2, -8, 1, -9)
@@ -5666,7 +5666,7 @@ local VERSION = "5.0"
 						end
 					end)
 					kill = inputService.InputEnded:Connect(function(input)
-						if input.UserInputType == Enum.UserInputType.MouseButton1 then
+						if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 							move:Disconnect()
 							kill:Disconnect()
 						end
@@ -6190,14 +6190,14 @@ local VERSION = "5.0"
 				local move
 				local kill
 				move = inputService.InputChanged:Connect(function(input)
-					if input.UserInputType == Enum.UserInputType.MouseMovement then
+					if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
 						local x,y,xscale,yscale,xscale2 = RelativeXY(obj, inputService:GetMouseLocation())
 						sliderapi["SetValue"]((valtochange == "Hue" and (min + ((max - min) * xscale)) or false), (valtochange == "Sat" and (min + ((max - min) * xscale)) or false), (valtochange == "Value" and (min + ((max - min) * xscale)) or false))
 						obj.ButtonSlider.Position = UDim2.new(math.clamp(xscale2, 0.02, 0.95), -9, 0, -7)
 					end
 				end)
 				kill = inputService.InputEnded:Connect(function(input)
-					if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 						move:Disconnect()
 						kill:Disconnect()
 					end
