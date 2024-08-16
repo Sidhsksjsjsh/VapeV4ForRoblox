@@ -1322,7 +1322,9 @@ local VERSION = "5.0"
 			if argstable["Default"] then
 				buttonapi["ToggleButton"](argstable["Default"], true)
 			end
-			toggleframe1.MouseButton1Click:Connect(function() buttonapi["ToggleButton"](not buttonapi["Enabled"], false) end)
+			toggleframe1.MouseButton1Click:Connect(function() 
+				buttonapi["ToggleButton"](not buttonapi["Enabled"], false) 
+			end)
 			toggleframe1.MouseEnter:Connect(function()
 				if buttonapi["Enabled"] == false then
 					pcall(function()
