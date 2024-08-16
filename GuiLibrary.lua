@@ -1760,7 +1760,9 @@ local VERSION = "5.0"
 					uicorner2.CornerRadius = UDim.new(0, 3)
 					uicorner2.Parent = toggleframe2
 
-					toggleframe1.MouseButton1Click:Connect(function() argstable["Function"]() end)
+					toggleframe1.MouseButton1Click:Connect(function() 
+						argstable["Function"]() 
+					end)
 					toggleframe1.MouseEnter:Connect(function()
 						tweenService:Create(toggleframe1, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(31, 30, 31)}):Play()
 					end)
@@ -3816,7 +3818,7 @@ local VERSION = "5.0"
 			children2.BorderSizePixel = 0
 			children2.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 		--	children2.LayoutOrder = amount
-			children2.Visible = false
+			children2.Visible = true
 			children2.Name = argstablemain["Name"].."Children"
 			children2.Parent = children
 			local uilistlayout2 = Instance.new("UIListLayout")
@@ -3896,7 +3898,7 @@ local VERSION = "5.0"
 					hoverbox.Position = UDim2.new(0, (x + 16) * (1 / GuiLibrary["MainRescale"].Scale), 0,	(y - (hoverbox.Size.Y.Offset / 2) - 26) * (1 / GuiLibrary["MainRescale"].Scale))
 				end)
 			end
-			buttonapi["Enabled"] = false
+			buttonapi["Enabled"] = true
 			buttonapi["Keybind"] = ""
 			buttonapi["HoverText"] = argstablemain["HoverText"]
 			buttonapi["Children"] = children2
@@ -3929,7 +3931,7 @@ local VERSION = "5.0"
 				end
 			end
 
-			buttonapi["ToggleButton"] = function(clicked, toggle)
+		        buttonapi["ToggleButton"] = function(clicked, toggle)
 				buttonapi["Enabled"] = (toggle or not buttonapi["Enabled"])
 				if buttonapi["Enabled"] then
 					button.BackgroundColor3 = Color3.fromHSV(GuiLibrary.ObjectsThatCanBeSaved["Gui ColorSliderColor"]["Api"]["Hue"], GuiLibrary.ObjectsThatCanBeSaved["Gui ColorSliderColor"]["Api"]["Sat"], GuiLibrary.ObjectsThatCanBeSaved["Gui ColorSliderColor"]["Api"]["Value"])
@@ -3954,7 +3956,8 @@ local VERSION = "5.0"
 					bindtext.TextColor3 = Color3.fromRGB(88, 88, 88)
 					bindimg.ImageColor3 = Color3.fromRGB(88, 88, 88)
 				end
-				argstablemain["Function"](buttonapi["Enabled"])
+				--argstablemain["Function"](buttonapi["Enabled"])
+			        children2.Visible = buttonapi["Enabled"]
 				GuiLibrary["UpdateHudEvent"]:Fire()
 			end
 
@@ -4132,6 +4135,61 @@ local VERSION = "5.0"
 				return textGuiLibrary
 			end
 
+		        buttonapi["CreateButton2"] = function(argstable)
+				local raw_integer_string_table = {}
+				local currentanim
+				local amount = #children2:GetChildren()
+				local buttontext = Instance.new("Frame")
+				buttontext.BackgroundTransparency = 1
+				buttontext.Name = "ButtonText"
+				buttontext.Name = argstable["Name"]
+				buttontext.LayoutOrder = amount
+				buttontext.Size = UDim2.new(1, 0, 0, 30)
+				buttontext.Active = false
+				buttontext.Position = UDim2.new(0, (icon and 36 or 10), 0, 0)
+				buttontext.Parent = children3
+				local toggleframe2 = Instance.new("Frame")
+				toggleframe2.Size = UDim2.new(0, 199, 0, 26)
+				toggleframe2.Position = UDim2.new(0, 11, 0, 1)
+				toggleframe2.BackgroundColor3 = Color3.fromRGB(38, 37, 38)
+				toggleframe2.Name = "ToggleFrame2"
+				toggleframe2.Parent = buttontext
+				local toggleframe1 = Instance.new("TextButton")
+				toggleframe1.AutoButtonColor = false
+				toggleframe1.Size = UDim2.new(0, 195, 0, 22)
+				toggleframe1.BackgroundColor3 = Color3.fromRGB(26, 25, 26)
+				toggleframe1.BorderSizePixel = 0
+				toggleframe1.Text = (translations[argstable["Name"]] ~= nil and translations[argstable["Name"]] or argstable["Name"]):upper()
+				toggleframe1.Font = Enum.Font.SourceSans
+				toggleframe1.TextSize = 17
+				toggleframe1.TextColor3 = Color3.fromRGB(151, 151, 151)
+				toggleframe1.Name = "ToggleFrame1"
+				toggleframe1.Position = UDim2.new(0, 2, 0, 2)
+				toggleframe1.Parent = toggleframe2
+				local uicorner = Instance.new("UICorner")
+				uicorner.CornerRadius = UDim.new(0, 3)
+				uicorner.Parent = toggleframe1
+				local uicorner2 = Instance.new("UICorner")
+				uicorner2.CornerRadius = UDim.new(0, 3)
+				uicorner2.Parent = toggleframe2
+
+			        raw_integer_string_table["SignalClick"] = function()
+				        argstable["Function"]()
+			        end
+			
+				toggleframe1.MouseButton1Click:Connect(function() 
+					argstable["Function"]() 
+				end)
+				toggleframe1.MouseEnter:Connect(function()
+					tweenService:Create(toggleframe1, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(31, 30, 31)}):Play()
+				end)
+				toggleframe1.MouseLeave:Connect(function()
+					tweenService:Create(toggleframe1, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(26, 25, 26)}):Play()
+				end)
+
+				return raw_integer_string_table
+			end
+		
 			buttonapi["CreateTextBox"] = function(argstable)
 				local textGuiLibrary = {}
 				local amount = #children2:GetChildren()
