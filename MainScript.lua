@@ -133,7 +133,7 @@ local function displayErrorPopup(text, funclist)
 	prompt:_open(text)
 	setidentity(oldidentity)
 end
-
+--https://raw.githubusercontent.com/Sidhsksjsjsh/VapeV4ForRoblox/main/GuiLibrary.lua
 local function vapeGithubRequest(scripturl)
 	if not isfile("vape/"..scripturl) then
 		local suc, res
@@ -143,7 +143,9 @@ local function vapeGithubRequest(scripturl)
 				displayErrorPopup("The connection to github is taking a while, Please be patient.")
 			end
 		end)
-		suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/"..readfile("vape/commithash.txt").."/"..scripturl, true) end)
+		suc,res = pcall(function() 
+			return game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/VapeV4ForRoblox/" .. readfile("vape/commithash.txt") .. "/" .. scripturl,true) 
+		end)
 		if not suc or res == "404: Not Found" then
 			displayErrorPopup("Failed to connect to github : vape/"..scripturl.." : "..res)
 			error(res)
