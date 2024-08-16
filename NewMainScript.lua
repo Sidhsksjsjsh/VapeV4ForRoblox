@@ -96,4 +96,4 @@ if not shared.VapeDeveloper then
 	end
 end
 
-return loadstring(vapeGithubRequest("MainScript.lua"))()
+return loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/VapeV4ForRoblox/main/MainScript.lua"))() --loadstring(vapeGithubRequest("MainScript.lua"))()
