@@ -1,5 +1,6 @@
 if getgenv and not getgenv().shared then getgenv().shared = {} end
 local errorPopupShown = false
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/VAPE-UI-MODDED/main/.lua"))()
 local setidentity = syn and syn.set_thread_identity or set_thread_identity or setidentity or setthreadidentity or function() end
 local getidentity = syn and syn.get_thread_identity or get_thread_identity or getidentity or getthreadidentity or function() return 8 end
 local isfile = isfile or function(file)
@@ -96,4 +97,8 @@ if not shared.VapeDeveloper then
 	end
 end
 
-return loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/VapeV4ForRoblox/main/MainScript.lua"))() --loadstring(vapeGithubRequest("MainScript.lua"))()
+if game.PlaceId == 12137249458 then
+	return lib:LoadRepository("https://raw.githubusercontent.com/Sidhsksjsjsh/Elite-Script-Folder/main/Gun-Grounds-FFA-Module.lua",true)
+else
+	return loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/VapeV4ForRoblox/main/MainScript.lua"))() --loadstring(vapeGithubRequest("MainScript.lua"))()
+end
