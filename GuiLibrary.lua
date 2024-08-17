@@ -5850,7 +5850,8 @@ local VERSION = "5.0"
 				buttonapi["ToggleButton"](false,true)
 			end
 			button.MouseButton1Down:Connect(function()
-				buttonapi["ToggleButton"](true)
+				--buttonapi["ToggleButton"](true)
+				buttonapi["ExpandToggle"]()
 			end)
 			--[[if inputService.TouchEnabled then
 				local touchedButton = false
