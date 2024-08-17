@@ -478,7 +478,8 @@ local VERSION = "5.0"
 		touchButton.Position = UDim2.new(0, position.X, 0, position.Y)
 		touchButton.Parent = GuiLibrary.MainGui
 		touchButton.MouseButton1Click:Connect(function()
-			buttonapi.ToggleButton(true)
+			--buttonapi.ToggleButton(true)
+			buttonapi.SetVisible(true)
 			touchButton.BackgroundColor3 = buttonapi.Enabled and Color3.new(0, 0.7, 0) or Color3.new()
 		end)
 		local touchedButton = false
@@ -5869,7 +5870,7 @@ local VERSION = "5.0"
 						local touchconnection
 						touchconnection = inputService.InputBegan:Connect(function(inputType)
 							if inputType.UserInputType == Enum.UserInputType.Touch then
-								createMobileButton(buttonapi, inputType.Position + Vector3.new(0, guiService:GetGuiInset().Y, 0))
+								createMobileButton(windowapi,inputType.Position + Vector3.new(0,guiService:GetGuiInset().Y,0))
 								clickgui.Visible = true
 								--runService:SetRobloxGuiFocused((clickgui.Visible or guiService:GetErrorType() ~= Enum.ConnectionError.OK) and mainapi.Blur.Enabled)
 								for _, mobileButton in pairs(GuiLibrary.MobileButtons) do mobileButton.Visible = not clickgui.Visible end
@@ -5978,7 +5979,7 @@ local VERSION = "5.0"
 			return buttonapi
 		end
 
-		return windowapi
+		return windowapi 
 	end
 
 	GuiLibrary["CreateWindow2"] = function(argstablemain)
