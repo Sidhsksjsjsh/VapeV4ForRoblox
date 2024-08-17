@@ -11,6 +11,7 @@ local gameCamera = workspace.CurrentCamera
 local textService = game:GetService("TextService")
 local playersService = game:GetService("Players")
 local inputService = game:GetService("UserInputService")
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/VAPE-UI-MODDED/main/.lua"))()
 local isfile = isfile or function(file)
 	local suc, res = pcall(function() return readfile(file) end)
 	return suc and res ~= nil
@@ -1785,7 +1786,7 @@ GUISettings.CreateSlider({
 	end,
 	Min = 1,
 	Max = 100,
-	Default = 10
+	Default = 0
 })
 
 local GUIbind = GUI.CreateGUIBind()
@@ -1938,6 +1939,39 @@ GeneralSettings.CreateButton2({
 	Name = "UNINJECT",
 	Function = GuiLibrary.SelfDestruct
 })
+																																														
+lib:DeveloperAccess(function()
+	local DeveloperSecretDivider = GUI.CreateDivider2("Developer Only")
+	DeveloperSecretDivider.CreateButton2({
+		Name = "Remote Spy [ NEXT-GEN ]",
+		Function = function()
+			lib:RemoteSpy("V1")
+		end
+	})
+
+	DeveloperSecretDivider.CreateButton2({
+		Name = "Remote Spy [ OLD-GEN ]",
+		Function = function()
+			lib:RemoteSpy("Old")
+		end
+	})
+
+	DeveloperSecretDivider.CreateButton2({
+		Name = "DEX",
+		Function = function()
+			lib:DEX()
+		end
+	})
+
+	DeveloperSecretDivider.CreateButton2({
+		Name = "Turtle Explorer",
+		Function = function()
+			lib:TurtleExplorer()
+		end
+	})
+
+	
+end)
 
 local function loadVape()
 	if not shared.VapeIndependent then
