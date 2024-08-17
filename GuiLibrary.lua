@@ -5846,7 +5846,7 @@ local VERSION = "5.0"
 			end
 
 			if argstablemain["Default"] then
-				buttonapi["ToggleButton"](false, true)
+				buttonapi["ToggleButton"](false,true)
 			end
 			button.MouseButton1Click:Connect(function()
 				buttonapi["ToggleButton"](true)
@@ -5946,14 +5946,14 @@ local VERSION = "5.0"
 					bindbkg.Position = UDim2.new(1, -(36 + newsize.X.Offset), 0, 9)
 				end
 			end)
-			button.MouseButton2Click:Connect(buttonapi["ExpandToggle"])
+			button.MouseButton1Click:Connect(buttonapi["ExpandToggle"])
 			button2.MouseButton1Click:Connect(buttonapi["ExpandToggle"])
 			GuiLibrary.ObjectsThatCanBeSaved[argstablemain["Name"].."OptionsButton"] = {["Type"] = "OptionsButton", ["Object"] = button, ["ChildrenObject"] = children2, ["Api"] = buttonapi, ["SortOrder"] = 0}
 
 			local sorttable1 = {}
 			for i,v in pairs(children:GetChildren()) do
 				if v:IsA("TextButton") then
-					table.insert(sorttable1, v.Name)
+					table.insert(sorttable1,v.Name)
 				end
 			end
 			table.sort(sorttable1)
