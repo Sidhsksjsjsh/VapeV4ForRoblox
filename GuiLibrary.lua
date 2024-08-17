@@ -480,7 +480,7 @@ local VERSION = "5.0"
 		touchButton.MouseButton1Click:Connect(function()
 			--buttonapi.ToggleButton(true)
 			buttonapi.SetVisible(true)
-			touchButton.BackgroundColor3 = buttonapi.Enabled and Color3.new(0, 0.7, 0) or Color3.new()
+			--touchButton.BackgroundColor3 = buttonapi.Enabled and Color3.new(0, 0.7, 0) or Color3.new()
 		end)
 		local touchedButton = false
 		touchButton.MouseButton1Down:Connect(function()
