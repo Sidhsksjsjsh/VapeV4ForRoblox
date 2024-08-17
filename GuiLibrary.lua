@@ -5849,10 +5849,10 @@ local VERSION = "5.0"
 			if argstablemain["Default"] then
 				buttonapi["ToggleButton"](false,true)
 			end
-			button.MouseButton1Click:Connect(function()
+			button.MouseButton1Down:Connect(function()
 				buttonapi["ToggleButton"](true)
 			end)
-			if inputService.TouchEnabled then
+			--[[if inputService.TouchEnabled then
 				local touchedButton = false
 				button.MouseButton1Down:Connect(function()
 					touchedButton = true
@@ -5882,7 +5882,7 @@ local VERSION = "5.0"
 				button.MouseButton1Up:Connect(function()
 					touchedButton = false
 				end)
-			end
+			end]]
 			button.MouseEnter:Connect(function()
 				bindbkg.Visible = true
 				if not buttonapi["Enabled"] then
