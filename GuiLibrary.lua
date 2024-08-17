@@ -5946,7 +5946,7 @@ local VERSION = "5.0"
 					bindbkg.Position = UDim2.new(1, -(36 + newsize.X.Offset), 0, 9)
 				end
 			end)
-			button.MouseButton1Click:Connect(buttonapi["ExpandToggle"])
+			button.MouseButton2Click:Connect(buttonapi["ExpandToggle"])
 			button2.MouseButton1Click:Connect(buttonapi["ExpandToggle"])
 			GuiLibrary.ObjectsThatCanBeSaved[argstablemain["Name"].."OptionsButton"] = {["Type"] = "OptionsButton", ["Object"] = button, ["ChildrenObject"] = children2, ["Api"] = buttonapi, ["SortOrder"] = 0}
 
