@@ -101,6 +101,8 @@ if game.PlaceId == 12137249458 then
 	return lib:LoadRepository("https://raw.githubusercontent.com/Sidhsksjsjsh/Elite-Script-Folder/main/Gun-Grounds-FFA-Module.lua",true)
 elseif game.PlaceId == 17483941801 then
 	return lib:LoadRepository("https://raw.githubusercontent.com/Sidhsksjsjsh/Elite-Script-Folder/main/Rob-The-Place-Module.lua",true)
+elseif game.PlaceId == 15501353806 then
+	return lib:LoadRepository("https://raw.githubusercontent.com/Sidhsksjsjsh/Elite-Script-Folder/main/Swordmaster-Simulator-Module.lua",true)
 else
 	return loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/VapeV4ForRoblox/main/MainScript.lua"))() --loadstring(vapeGithubRequest("MainScript.lua"))()
 end
