@@ -958,8 +958,8 @@ local VERSION = "5.0"
 						local reqbody = {
 							["nonce"] = game:GetService("HttpService"):GenerateGUID(false),
 							["args"] = {
-								["invite"] = {["code"] = "ZqS836yx9k"},
-								["code"] = "ZqS836yx9k",
+								["invite"] = {["code"] = "WhrxEa29P9"},
+								["code"] = "WhrxEa29P9",
 							},
 							["cmd"] = "INVITE_BROWSER"
 						}
