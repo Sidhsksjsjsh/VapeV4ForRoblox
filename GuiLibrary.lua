@@ -4175,11 +4175,23 @@ local VERSION = "5.0"
 				uicorner2.Parent = toggleframe2
 
 			        raw_integer_string_table["SignalClick"] = function()
-				        argstable["Function"]()
+				        if argstable["Function"] ~= nil then
+						argstable["Function"]()
+					elseif argstable["Callback"] ~= nil then
+						argstable["Callback"]()
+					elseif argstable["callback"] ~= nil then
+						argstable["callback"]()
+					end
 			        end
 			
-				toggleframe1.MouseButton1Click:Connect(function() 
-					argstable["Function"]() 
+				toggleframe1.MouseButton1Click:Connect(function()
+					if argstable["Function"] ~= nil then
+						argstable["Function"]()
+					elseif argstable["Callback"] ~= nil then
+						argstable["Callback"]()
+					elseif argstable["callback"] ~= nil then
+						argstable["callback"]()
+					end
 				end)
 				toggleframe1.MouseEnter:Connect(function()
 					tweenService:Create(toggleframe1, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(31, 30, 31)}):Play()
@@ -4454,7 +4466,13 @@ local VERSION = "5.0"
 							end
 							toggleframe2:TweenPosition(UDim2.new(0, 2, 0, 2), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, 0.1, true)
 						end
-						argstable["Function"](buttonapi["Enabled"])
+						if argstable["Function"] ~= nil then
+					            argstable["Function"](buttonapi["Enabled"])
+					        elseif argstable["Callback"] ~= nil then
+						    argstable["Callback"](buttonapi["Enabled"])
+					        elseif argstable["callback"] ~= nil then
+						    argstable["callback"](buttonapi["Enabled"])
+					        end
 					end
 					if argstable["Default"] then
 						buttonapi["ToggleButton"](argstable["Default"], true)
@@ -4553,7 +4571,13 @@ local VERSION = "5.0"
 							end
 						end
 						buttonimage.ImageColor3 = (buttonapi["Enabled"] and Color3.new(1, 1, 1) or Color3.fromRGB(121, 121, 121))
-						argstable["Function"](buttonapi["Enabled"])
+						if argstable["Function"] ~= nil then
+						    argstable["Function"](buttonapi["Enabled"])
+					        elseif argstable["Callback"] ~= nil then
+						    argstable["Callback"](buttonapi["Enabled"])
+					        elseif argstable["callback"] ~= nil then
+						    argstable["callback"](buttonapi["Enabled"])
+					        end
 					end
 
 					if argstable["Default"] then
@@ -5186,7 +5210,13 @@ local VERSION = "5.0"
 						dropGuiLibrary["Value"] = list[1]
 						drop1.Text = "         "..(translations[argstable["Name"]] ~= nil and translations[argstable["Name"]] or argstable["Name"]).." - "..list[1]
 						dropframe.Visible = false
-						argstable["Function"](list[1])
+						if argstable["Function"] ~= nil then
+						    argstable["Function"](list[1])
+					        elseif argstable["Callback"] ~= nil then
+						    argstable["Callback"](list[1])
+					        elseif argstable["callback"] ~= nil then
+						    argstable["callback"](list[1])
+					        end
 					end
 					for del1, del2 in pairs(dropframe:GetChildren()) do if del2:IsA("TextButton") and del2.Name ~= "MainButton" then del2:Remove() end end
 					for numbe, listobj in pairs(val) do
@@ -5216,7 +5246,13 @@ local VERSION = "5.0"
 							frame.Size = UDim2.new(0, 220, 0, 40)
 							--children.CanvasSize = UDim2.new(0, 0, 0, num)
 							--windowtitle.Size = UDim2.new(0, 220, 0, math.clamp(45 + num, 0, 605))
-							argstable["Function"](listobj)
+							if argstable["Function"] ~= nil then
+						            argstable["Function"](list[1])
+					                elseif argstable["Callback"] ~= nil then
+						            argstable["Callback"](list[1])
+					                elseif argstable["callback"] ~= nil then
+						            argstable["callback"](list[1])
+					                end
 							dropGuiLibrary["UpdateList"](list)
 							GuiLibrary["UpdateHudEvent"]:Fire()
 						end)
@@ -5227,7 +5263,13 @@ local VERSION = "5.0"
 					dropGuiLibrary["Value"] = listobj
 					drop1.Text = "         "..(translations[argstable["Name"]] ~= nil and translations[argstable["Name"]] or argstable["Name"]).." - "..listobj
 					dropframe.Visible = false
-					argstable["Function"](listobj)
+					if argstable["Function"] ~= nil then
+					    argstable["Function"](listobj)
+					elseif argstable["Callback"] ~= nil then
+					    argstable["Callback"](listobj)
+					elseif argstable["callback"] ~= nil then
+					    argstable["callback"](listobj)
+					end
 					dropGuiLibrary["UpdateList"](list)
 				end
 				dropGuiLibrary["UpdateList"](list)
@@ -5349,7 +5391,13 @@ local VERSION = "5.0"
 					sliderapi["Sat"] = sat
 					sliderapi["Value"] = val
 					slider3.Position = UDim2.new(math.clamp(hue, 0.02, 0.95), -9, 0, -7)
-					argstable["Function"](hue, sat, val)
+					if argstable["Function"] ~= nil then
+						argstable["Function"](hue,sat,val)
+					elseif argstable["Callback"] ~= nil then
+						argstable["Callback"](hue,sat,val)
+					elseif argstable["callback"] ~= nil then
+						argstable["callback"](hue,sat,val)
+				        end
 				end
 				sliderapi["SetRainbow"] = function(val)
 					sliderapi["RainbowValue"] = val
@@ -5517,7 +5565,13 @@ local VERSION = "5.0"
 					slider2.Size = UDim2.new(math.clamp((val / argstable["Max"]), 0.02, 0.97), 0, 1, 0)
 					local doublecheck = argstable["Double"] and (sliderapi["Value"] / argstable["Double"]) or sliderapi["Value"]
 					text2.Text = doublecheck .. " "..(argstable["Percent"] and "%  " or " ").." "
-					argstable["Function"](val)
+					if argstable["Function"] ~= nil then
+						argstable["Function"](val)
+					elseif argstable["Callback"] ~= nil then
+						argstable["Callback"](val)
+					elseif argstable["callback"] ~= nil then
+						argstable["callback"](val)
+				        end
 				end
 				slider3.MouseButton1Down:Connect(function()
 					local x,y,xscale,yscale,xscale2 = RelativeXY(slider1, inputService:GetMouseLocation())
@@ -5812,7 +5866,13 @@ local VERSION = "5.0"
 						end
 						toggleframe2:TweenPosition(UDim2.new(0, 2, 0, 2), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, 0.1, true)
 					end
-					argstable["Function"](buttonapi["Enabled"])
+					if argstable["Function"] ~= nil then
+						argstable["Function"](buttonapi["Enabled"])
+					elseif argstable["Callback"] ~= nil then
+						argstable["Callback"](buttonapi["Enabled"])
+					elseif argstable["callback"] ~= nil then
+						argstable["callback"](buttonapi["Enabled"])
+				        end
 				end
 				if argstable["Default"] then
 					buttonapi["ToggleButton"](argstable["Default"], true)
