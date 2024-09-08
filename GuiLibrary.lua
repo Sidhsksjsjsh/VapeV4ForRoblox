@@ -53,6 +53,7 @@ local FPSRender = StatsRow:Label()
 local Ping = StatsRow:Label()
 local Memory = StatsRow:Label()
 local date = StatsRow:Label()
+local Stats = game:GetService("Stats")
 
 
 local VERSION = "5.0"
@@ -172,6 +173,8 @@ local Memory = StatsRow:Label()
 		FPS.Text = "Real FPS : " .. math.round(1/v)
 		FPSRender.Text = "Render FPS : " .. math.floor(workspace:GetRealPhysicsFPS())
 		date.Text = "The time is " .. DateTime.now():FormatLocalTime("dddd h:mm:ss A","en-us")
+		Ping.Text = "PING : " .. tostring(string.split(Stats["Network"]["ServerStatsItem"]["Data Ping"]:GetValueString()," ")[1]) .. "ms (" .. math.floor((LocalPlayer:GetNetworkPing() or 0)) .. "ms/R)"
+		Memory.Text = "Memory Usage : " .. math.floor(Stats.GetTotalMemoryUsageMb(Stats))
 	end)
 
 	local function randomString()
