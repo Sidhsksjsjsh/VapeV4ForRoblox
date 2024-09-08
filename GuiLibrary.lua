@@ -1,6 +1,9 @@
 if getgenv and not getgenv().shared then
 	getgenv().shared = {}
 end
+
+local requestfunc = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or request or function() end
+
 local function LoadInterface(path) 
 	local async = requestfunc({
 		Url = path,
@@ -125,7 +128,6 @@ local VERSION = "5.0"
 	}
 	local getcustomasset = getsynasset or getcustomasset or function(location) return vapeAssetTable[location] or "" end
 	local customassetcheck = (getsynasset or getcustomasset) and true
-	local requestfunc = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or request or function() end
 	local isfile = isfile or function(file)
 		local suc, res = pcall(function() return readfile(file) end)
 		return suc and res ~= nil
