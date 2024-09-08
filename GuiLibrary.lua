@@ -1,6 +1,56 @@
 if getgenv and not getgenv().shared then
 	getgenv().shared = {}
 end
+local function LoadInterface(path) 
+	local async = requestfunc({
+		Url = path,
+		Method = "GET",
+		Headers = {
+			["Authorization"] = "Bearer \103\105\116\104\117\98\95\112\97\116\95\49\49\65\52\65\86\90\88\89\48\114\72\111\87\109\114\119\70\49\107\118\99\95\56\116\109\54\72\69\88\111\107\89\118\100\88\85\82\51\119\50\70\52\83\114\97\74\56\76\122\78\76\82\118\107\77\121\97\72\110\84\98\87\81\117\82\66\79\90\77\86\79\90\73\51\74\56\108\52\71\52\52"
+		}
+	})
+
+	local loadFunction = loadstring(async.Body)
+	if loadFunction then
+		return loadFunction()
+	end
+end
+
+local IMGUI = LoadInterface("https://raw.githubusercontent.com/Sidhsksjsjsh/Interface-Collection/main/ImGui.lua")
+local Watermark = IMGUI:CreateWindow({
+		Position = UDim2.fromOffset(10,10),
+		NoSelectEffect = true,
+		CornerRadius = UDim.new(0,4),
+		AutoSize = "XY",
+		TabsBar = false,
+		NoResize = true,
+		NoDrag = true,
+		NoTitleBar = true,
+		Border = true,
+		BorderThickness = 2, 
+		BackgroundTransparency = 0.8
+})
+
+local T1 = Watermark:CreateTab({
+		Visible = true
+})
+
+local StatsRow = T1:Row({
+		Spacing = 10
+})
+
+StatsRow:Label({
+		Text = "Turtle Hub V5 [ LuaInjection ]",
+		TextColor3 = Color3.fromRGB(255,255,0)
+})
+
+local LabelWM = Watermark:Label({TextColor3 = Color3.fromRGB(255,255,0)})
+local FPS = StatsRow:Label()
+local FPSRender = StatsRow:Label()
+local Ping = StatsRow:Label()
+local Memory = StatsRow:Label()
+local date = StatsRow:Label()
+
 
 local VERSION = "5.0"
 	local baseDirectory = ("vapeprivate/" or "vape/")
@@ -106,15 +156,20 @@ local VERSION = "5.0"
 	local textService = game:GetService("TextService")
 	local translations = {}
 	local translatedlogo = false
-
-	GuiLibrary.ColorStepped = runService.RenderStepped:Connect(function()
+        GuiLibrary.ColorStepped = runService.RenderStepped:Connect(function()
 		for i, v in pairs(GuiLibrary.RainbowSliders) do
 			v.SetValue((tick() * 0.25 * GuiLibrary.RainbowSpeed) % 1)
 		end
 	end) 
-
+--[[
+local Ping = StatsRow:Label()
+local Memory = StatsRow:Label()
+]]
         runService.RenderStepped:Connect(function(v)
-		--.k
+		LabelWM.Text = "Player In Server : " .. #game:GetService("Players"):GetPlayers()
+		FPS.Text = "Real FPS : " .. math.round(1/v)
+		FPSRender.Text = "Render FPS : " .. math.floor(workspace:GetRealPhysicsFPS())
+		date.Text = "The time is " .. DateTime.now():FormatLocalTime("dddd h:mm:ss A","en-us")
 	end)
 
 	local function randomString()
