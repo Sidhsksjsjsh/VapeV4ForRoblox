@@ -43,7 +43,7 @@ local StatsRow = T1:Row({
 })
 
 StatsRow:Label({
-		Text = "Turtle Hub V5 [ LuaInjection ]",
+		Text = "Turtle Hub V5",
 		TextColor3 = Color3.fromRGB(255,255,0)
 })
 
