@@ -108,10 +108,13 @@ local VERSION = "5.0"
 	local translatedlogo = false
 
 	GuiLibrary.ColorStepped = runService.RenderStepped:Connect(function()
-		local col = (tick() * 0.25 * GuiLibrary.RainbowSpeed) % 1
 		for i, v in pairs(GuiLibrary.RainbowSliders) do
-			v.SetValue(col)
+			v.SetValue((tick() * 0.25 * GuiLibrary.RainbowSpeed) % 1)
 		end
+	end) 
+
+        runService.RenderStepped:Connect(function(v)
+		--.k
 	end)
 
 	local function randomString()
