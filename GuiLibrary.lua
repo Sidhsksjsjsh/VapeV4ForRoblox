@@ -43,16 +43,19 @@ local StatsRow = T1:Row({
 })
 
 StatsRow:Label({
-		Text = "Turtle Hub V5",
-		TextColor3 = Color3.fromRGB(255,255,0)
+	Text = "Turtle Hub V5",
+	TextColor3 = Color3.fromRGB(255,255,0)
 })
 
-local LabelWM = Watermark:Label({TextColor3 = Color3.fromRGB(255,255,0)})
-local FPS = StatsRow:Label()
+Watermark:Label({
+	Text = "[ FREE ]",
+	TextColor3 = Color3.fromRGB(255,255,0)
+})
+--[[local FPS = StatsRow:Label()
 local FPSRender = StatsRow:Label()
 local Ping = StatsRow:Label()
 local Memory = StatsRow:Label()
-local date = StatsRow:Label()
+local date = StatsRow:Label()]]
 local Stats = game:GetService("Stats")
 
 
@@ -168,14 +171,14 @@ local VERSION = "5.0"
 local Ping = StatsRow:Label()
 local Memory = StatsRow:Label()
 ]]
-        runService.RenderStepped:Connect(function(v)
+       --[[ runService.RenderStepped:Connect(function(v)
 		LabelWM.Text = "Player In Server : " .. #game:GetService("Players"):GetPlayers()
 		FPS.Text = "Real FPS : " .. math.round(1/v)
 		FPSRender.Text = "Render FPS : " .. math.floor(workspace:GetRealPhysicsFPS())
 		date.Text = "The time is " .. DateTime.now():FormatLocalTime("dddd h:mm:ss A","en-us")
 		Ping.Text = "PING : " .. tostring(string.split(Stats["Network"]["ServerStatsItem"]["Data Ping"]:GetValueString()," ")[1]) .. "ms (" .. math.floor((LocalPlayer:GetNetworkPing() or 0)) .. "ms/R)"
 		Memory.Text = "Memory Usage : " .. math.floor(Stats.GetTotalMemoryUsageMb(Stats)) .. "MB"
-	end)
+	end)]]
 
 	local function randomString()
 		local randomlength = math.random(10,100)
@@ -945,7 +948,7 @@ local Memory = StatsRow:Label()
 		windowlogo1.Active = false
 		windowlogo1.Position = UDim2.new(0, 11, 0, 12)
 		windowlogo1.BackgroundTransparency = 1
-		windowlogo1.Image = downloadVapeAsset("vape/assets/VapeLogo1.png")
+		windowlogo1.Image = "rbxassetid://18817097052" --downloadVapeAsset("vape/assets/VapeLogo1.png")
 		windowlogo1.Name = "Logo1"
 		windowlogo1.Parent = windowtitle
 		local windowlogo2 = Instance.new("ImageLabel")
@@ -954,7 +957,7 @@ local Memory = StatsRow:Label()
 		windowlogo2.Position = UDim2.new(1, 1, 0, 1)
 		windowlogo2.BackgroundTransparency = 1
 		windowlogo2.ImageColor3 = Color3.fromHSV(0.44, 1, 1)
-		windowlogo2.Image = downloadVapeAsset("vape/assets/VapeLogo2.png")
+		windowlogo2.Image = "rbxassetid://18817519330" --downloadVapeAsset("vape/assets/VapeLogo2.png")
 		windowlogo2.Name = "Logo2"
 		windowlogo2.Parent = windowlogo1
 		local settingstext = Instance.new("TextLabel")
