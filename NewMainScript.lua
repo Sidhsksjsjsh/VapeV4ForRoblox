@@ -111,6 +111,8 @@ elseif game.PlaceId == 14350413280 then
 	return lib:LoadRepository("https://raw.githubusercontent.com/Sidhsksjsjsh/Elite-Script-Folder/main/Ice-Fishing-Simulator-Module.lua",true)
 elseif game.PlaceId == 17442503093 then
 	return lib:LoadRepository("https://raw.githubusercontent.com/Sidhsksjsjsh/Elite-Script-Folder/main/YouTube-Legends-Module.lua",true)
+elseif game.PlaceId == 10754226402 then
+	return lib:LoadRepository("https://raw.githubusercontent.com/Sidhsksjsjsh/Elite-Script-Folder/main/Headcrab-Test-3-Module.lua",true)
 else
 	return loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/VapeV4ForRoblox/main/MainScript.lua"))() --loadstring(vapeGithubRequest("MainScript.lua"))()
 end
