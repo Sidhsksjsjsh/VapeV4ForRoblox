@@ -47,11 +47,11 @@ StatsRow:Label({
 	TextColor3 = Color3.fromRGB(255,255,0)
 })
 
-Watermark:Label({
+--[[Watermark:Label({
 	Text = "[ FREE ]",
 	TextColor3 = Color3.fromRGB(255,255,0)
 })
---[[local FPS = StatsRow:Label()
+local FPS = StatsRow:Label()
 local FPSRender = StatsRow:Label()
 local Ping = StatsRow:Label()
 local Memory = StatsRow:Label()
