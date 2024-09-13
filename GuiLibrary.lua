@@ -2473,7 +2473,13 @@ local Memory = StatsRow:Label()
 							buttonicon.ImageColor3 = Color3.fromRGB(200, 200, 200)
 						end
 					end
-					argstable["callback"](buttonapi["Enabled"])
+					if argstable["Function"] ~= nil then
+						argstable["Function"](buttonapi["Enabled"])
+					elseif argstable["Callback"] ~= nil then
+						argstable["Callback"](buttonapi["Enabled"])
+					elseif argstable["callback"] ~= nil then
+						argstable["callback"](buttonapi["Enabled"])
+					end
 					GuiLibrary["UpdateHudEvent"]:Fire()
 				end
 			end
