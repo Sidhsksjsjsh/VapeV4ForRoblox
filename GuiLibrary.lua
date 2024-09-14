@@ -19,7 +19,7 @@ local function LoadInterface(path)
 	end
 end
 
-local IMGUI = LoadInterface("https://raw.githubusercontent.com/Sidhsksjsjsh/Interface-Collection/main/ImGui.lua")
+--[[local IMGUI = LoadInterface("https://raw.githubusercontent.com/Sidhsksjsjsh/Interface-Collection/main/ImGui.lua")
 local Watermark = IMGUI:CreateWindow({
 		Position = UDim2.fromOffset(10,10),
 		NoSelectEffect = true,
@@ -47,7 +47,7 @@ StatsRow:Label({
 	TextColor3 = Color3.fromRGB(255,255,0)
 })
 
---[[Watermark:Label({
+Watermark:Label({
 	Text = "[ FREE ]",
 	TextColor3 = Color3.fromRGB(255,255,0)
 })
