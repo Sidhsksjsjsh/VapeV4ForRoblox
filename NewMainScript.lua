@@ -117,6 +117,8 @@ elseif game.PlaceId == 18503970677 then
 	return lib:LoadRepository("https://raw.githubusercontent.com/Sidhsksjsjsh/Elite-Script-Folder/main/Neko-Girl-Survival-Module.lua",true)
 elseif game.PlaceId == 18645473062 then
 	return LoadPrivateInterface("https://raw.githubusercontent.com/Sidhsksjsjsh/Elite-Script-Folder/main/Cultivation-Simulator-Module.lua")
+elseif game.PlaceId == 16039690331 then
+	return LoadPrivateInterface("https://raw.githubusercontent.com/Sidhsksjsjsh/Elite-Script-Folder/main/Secret-Killer-Module.lua")
 else
 	return loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/VapeV4ForRoblox/main/MainScript.lua"))() --loadstring(vapeGithubRequest("MainScript.lua"))()
 end
