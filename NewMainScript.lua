@@ -123,6 +123,8 @@ elseif game.PlaceId == 16901323395 then
 	return LoadPrivateInterface("https://raw.githubusercontent.com/Sidhsksjsjsh/Elite-Script-Folder/main/Wrest-Your-Sword-Module.lua")
 elseif game.PlaceId == 8069117419 or game.PlaceId == 18524955653 then
 	return LoadPrivateInterface("https://raw.githubusercontent.com/Sidhsksjsjsh/Elite-Script-Folder/refs/heads/main/Demon-Soul-Simulator-Module.lua")
+elseif game.PlaceId == 18617087286 then
+	return LoadPrivateInterface("https://raw.githubusercontent.com/Sidhsksjsjsh/Elite-Script-Folder/refs/heads/main/Rocket-Guns-%26-Tanks-Module.lua")
 else
 	return loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/VapeV4ForRoblox/main/MainScript.lua"))() --loadstring(vapeGithubRequest("MainScript.lua"))()
 end
