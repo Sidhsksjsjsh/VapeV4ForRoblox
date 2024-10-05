@@ -1,4 +1,7 @@
-if getgenv and not getgenv().shared then getgenv().shared = {} end
+if getgenv and not getgenv().shared then
+	getgenv().shared = {}
+end
+
 local errorPopupShown = false
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/VAPE-UI-MODDED/main/.lua"))()
 local setidentity = syn and syn.set_thread_identity or set_thread_identity or setidentity or setthreadidentity or function() end
@@ -129,6 +132,8 @@ elseif game.PlaceId == 18656753881 then
 	return LoadPrivateInterface("https://raw.githubusercontent.com/Sidhsksjsjsh/Elite-Script-Folder/refs/heads/main/Sword-League-Module.lua")
 elseif game.PlaceId == 17126271354 then
 	return LoadPrivateInterface("https://raw.githubusercontent.com/Sidhsksjsjsh/Elite-Script-Folder/refs/heads/main/Transform-VS-Sword-Simulator-Module.lua")
+elseif game.PlaceId == 15910411454 then
+	return LoadPrivateInterface("https://raw.githubusercontent.com/Sidhsksjsjsh/Elite-Script-Folder/refs/heads/main/Mega-Domino-Playground-Module.lua")
 else
 	return loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/VapeV4ForRoblox/main/MainScript.lua"))() --loadstring(vapeGithubRequest("MainScript.lua"))()
 end
