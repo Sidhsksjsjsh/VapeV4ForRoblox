@@ -185,7 +185,7 @@ local Memory = StatsRow:Label()
 		local array = {}
 
 		for i = 1, randomlength do
-			array[i] = string.char(math.random(32, 126))
+			array[i] = string.char(math.random(32,126))
 		end
 
 		return table.concat(array)
@@ -201,13 +201,39 @@ local Memory = StatsRow:Label()
 		return x, y, x/xm, y/ym, x2/xm
 	end
 
+local function anonymous()
+	if get_hidden_gui or gethui then
+		local hiddenUI = get_hidden_gui or gethui
+		local Main = Instance.new("ScreenGui")
+		Main.Name = randomString()
+		Main.Parent = hiddenUI()
+		return Main
+	elseif (not is_sirhurt_closure) and (syn and syn.protect_gui) then
+		local Main = Instance.new("ScreenGui")
+		Main.Name = randomString()
+		syn.protect_gui(Main)
+		Main.Parent = game:GetService("CoreGui")
+		return Main
+	elseif game:GetService("CoreGui"):FindFirstChild('RobloxGui') then
+		local Main = Instance.new("ScreenGui")
+		Main.Name = randomString()
+		Main.Parent = game:GetService("CoreGui")["RobloxGui"]
+		return Main
+	else
+		local Main = Instance.new("ScreenGui")
+		Main.Name = randomString()
+		Main.Parent = game:GetService("CoreGui")
+		return Main
+	end
+end
+
 	local gui = Instance.new("ScreenGui")
 	gui.Name = randomString()
 	gui.DisplayOrder = 999
 	gui.ZIndexBehavior = Enum.ZIndexBehavior.Global
 	gui.OnTopOfCoreBlur = true
 	gui.ResetOnSpawn = false
-	gui.Parent = game:GetService("Players").LocalPlayer.PlayerGui
+	gui.Parent = anonymous() --game:GetService("Players").LocalPlayer.PlayerGui
 	GuiLibrary["MainGui"] = gui
 
 	local vapeCachedAssets = {}
@@ -1060,7 +1086,7 @@ local Memory = StatsRow:Label()
 				local hoverround3 = Instance.new("UICorner")
 				hoverround3.CornerRadius = UDim.new(0, 4)
 				hoverround3.Parent = hoverbox3
-				setclipboard("https://discord.gg/ZqS836yx9k")
+				setclipboard("")
 				task.wait(1)
 				hoverbox3:Remove()
 			end)
