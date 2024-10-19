@@ -514,7 +514,7 @@ end
 	GuiLibrary["MainRescale"] = Instance.new("UIScale")
 	GuiLibrary["MainRescale"].Parent = scaledgui
 	GuiLibrary["MainRescale"]:GetPropertyChangedSignal("Scale"):Connect(function()
-		vertext.Position = UDim2.new(1 / GuiLibrary["MainRescale"].Scale, -(vertextsize.X) - 20, 1 / GuiLibrary["MainRescale"].Scale, -25)
+		vertext.Position = UDim2.new(1 / GuiLibrary["MainRescale"].Scale,-(vertextsize.X) - 20,1 / GuiLibrary["MainRescale"].Scale,-25)
 	end)
 
 	local function dragGUI(gui, mod)
