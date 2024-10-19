@@ -283,12 +283,12 @@ end
 
 	local scaledgui = Instance.new("Frame")
 	scaledgui.Name = "ScaledGui"
-	scaledgui.Size = UDim2.new(0,220,0,254) --UDim2.new(1,0,1,0)
+	scaledgui.Size = UDim2.new(1,0,1,0)
 	scaledgui.BackgroundTransparency = 1
 	scaledgui.Parent = GuiLibrary["MainGui"]
 	local clickgui = Instance.new("Frame")
 	clickgui.Name = "ClickGui"
-	clickgui.Size = UDim2.new(1, 0, 1, 0)
+	clickgui.Size = UDim2.new(0,220,0,254) --UDim2.new(1,0,1,0)
 	clickgui.BackgroundTransparency = 1
 	clickgui.BorderSizePixel = 0
 	clickgui.BackgroundColor3 = Color3.fromRGB(79, 83, 166)
